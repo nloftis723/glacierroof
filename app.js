@@ -194,6 +194,7 @@ const settings = {
   detailLaborRate: R.meta.detailLaborRate,
   pricingMode: "list",        // list | workbook
   ruleMode: "workbook",       // workbook | corrected
+  showDetails: false,         // tax and percent columns in the material table
 };
 
 const prices = {};            // material -> unit price (the single price list)
@@ -382,16 +383,37 @@ function compute(q) {
    5. Formatting helpers
    ========================================================================= */
 
-const money = (v, d) => v === null || v === undefined || !isFinite(v) ? "-"
+const money = (v, d) => v === null || v === undefined || !isFinite(v) ? "\u2013"
   : (v < 0 ? "(" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d === undefined ? 0 : d, maximumFractionDigits: d === undefined ? 0 : d }) + (v < 0 ? ")" : "");
-const num = (v, d) => v === null || v === undefined || !isFinite(v) ? "-"
+const num = (v, d) => v === null || v === undefined || !isFinite(v) ? "\u2013"
   : Number(v).toLocaleString("en-US", { minimumFractionDigits: d || 0, maximumFractionDigits: d === undefined ? 2 : d });
-const pct = (v, d) => v === null || v === undefined || !isFinite(v) ? "-" : (v * 100).toFixed(d === undefined ? 1 : d) + "%";
+const pct = (v, d) => v === null || v === undefined || !isFinite(v) ? "\u2013" : (v * 100).toFixed(d === undefined ? 1 : d) + "%";
 const esc = (s) => String(s === null || s === undefined ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const el = (id) => document.getElementById(id);
 
+function hasTakeoff(q) {
+  return Object.keys(q.inputs).some((k) => q.inputs[k] !== "" && q.inputs[k] !== undefined && q.inputs[k] !== null);
+}
+
+function lockCard(id, locked, msg) {
+  const card = el(id);
+  if (!card) return;
+  card.classList.toggle("locked", locked);
+  let note = card.querySelector(".callout");
+  if (locked) {
+    if (!note) {
+      note = document.createElement("div");
+      note.className = "callout";
+      card.insertBefore(note, card.querySelector(".body"));
+    }
+    note.textContent = msg;
+  } else if (note) {
+    note.remove();
+  }
+}
+
 /* =========================================================================
-   6. Render: quote panel
+   6. Render: quote workspace
    ========================================================================= */
 
 function renderSelector() {
@@ -400,7 +422,7 @@ function renderSelector() {
     const opts = q.type === "yn" ? ["", "Yes", "No"] : [""].concat(q.options);
     return `<div class="qrow"><label for="sel-${q.key}">${esc(q.label)}</label>
       <select id="sel-${q.key}" data-sel="${q.key}">${opts.map((o) =>
-        `<option value="${esc(o)}"${a[q.key] === o ? " selected" : ""}>${o === "" ? "-" : esc(o)}</option>`).join("")}</select></div>`;
+        `<option value="${esc(o)}"${a[q.key] === o ? " selected" : ""}>${o === "" ? "\u2013" : esc(o)}</option>`).join("")}</select></div>`;
   }).join("");
 
   const routed = routeJobType(a);
@@ -411,7 +433,7 @@ function renderSelector() {
     const jt = R.jobTypes.find((j) => j.code === routed.code);
     box = `<div class="jobcode">${esc(routed.code)}<span class="label">${esc(jt ? jt.label : "")}</span></div>`;
   } else {
-    box = `<div class="jobcode bad">Answer the questions above to route the job.</div>`;
+    box = `<div class="jobcode wait">Answer the eight questions and the job type routes itself. Illegal combinations are called out here.</div>`;
   }
   el("selector").innerHTML = rows + box;
 
@@ -422,122 +444,168 @@ function renderSelector() {
 function renderInputs() {
   const jt = quote.jobType;
   const wrap = el("inputs");
-  if (!jt) { wrap.innerHTML = `<div class="empty">Route a job type to open the takeoff.</div>`; return; }
+  lockCard("card-inputs", !jt, "Route a job type above to unlock the takeoff for that system.");
+  if (!jt) { wrap.innerHTML = ""; return; }
   wrap.innerHTML = R.jobInputs[jt].map((k) => {
     const f = R.inputs.find((i) => i.key === k);
     const v = quote.inputs[k];
     return `<div class="field"><label for="in-${esc(k)}">${esc(k)}${f && f.help ? `<span class="hint">${esc(f.help)}</span>` : ""}</label>
       <input id="in-${esc(k)}" data-input="${esc(k)}" type="number" step="any" inputmode="decimal"
         value="${v === undefined ? "" : esc(v)}" class="${v ? "dirty" : ""}"></div>`;
-  }).join("");
+  }).join("") + `<div class="note" style="margin-top:8px">An empty box counts as zero. Everything on the right recalculates as you type.</div>`;
+}
+
+function badgesFor(l) {
+  const out = [];
+  (l.flags || []).forEach((f) => {
+    if (/DEFECT/.test(f)) out.push(`<span class="badge red" title="${esc(f)}">check rule</span>`);
+  });
+  if (l.missingPrice) out.push(`<span class="badge red" title="No price in the list. This line is quietly worth zero dollars, which is defect D-05 in the workbook.">no price</span>`);
+  if (l.overridden) out.push(`<span class="badge amber" title="Unit price overridden on this quote only">override</span>`);
+  if (l.err) out.push(`<span class="badge red" title="${esc(l.err)}">rule error</span>`);
+  if (l.rule.manual) out.push(`<span class="badge green" title="No formula in the workbook. Enter the quantity by hand, for example from an engineer quote.">manual</span>`);
+  return out.join("");
 }
 
 function renderMaterials(c) {
   const wrap = el("materials");
-  if (!quote.jobType) { wrap.innerHTML = `<div class="empty">No job type selected.</div>`; return; }
+  const jt = quote.jobType;
+  lockCard("card-materials", !jt, "The material list comes from the job type. Route one to see it.");
+  if (!jt) { wrap.innerHTML = ""; return; }
+
+  const started = hasTakeoff(quote);
   const matTotal = c.totals.materialTotal;
+
+  const head = `<thead><tr>
+      <th style="min-width:230px">Material</th>
+      <th>Unit price</th>
+      <th class="colDetails">After tax</th>
+      <th>Qty needed</th><th>Waste</th><th>Qty w/ waste</th>
+      <th>Amount</th><th>Subtotal w/ tax</th>
+      <th class="colDetails">% of material</th><th class="colDetails">Target</th>
+    </tr></thead>`;
+
+  const banner = started ? "" :
+    `<tr class="emptyRow"><td colspan="10">These ${c.lines.length} materials belong to ${esc(jt)}. Enter takeoff values on the left and the quantities and dollars fill in live.</td></tr>`;
+
   const rows = c.lines.map((l) => {
     const m = R.materials.find((x) => x.name === l.material) || {};
     const share = matTotal ? l.subtotal / matTotal : 0;
     const target = m.targetPct;
-    const shareClass = target && share > target * 1.25 ? "overpct" : (target && share < target * 0.75 ? "underpct" : "");
-    const flags = (l.flags || []).map((f) => `<span class="flag" title="${esc(f)}">!</span>`).join("");
-    const missing = l.missingPrice ? `<span class="pill red" title="No price in the list. This line is quietly worth zero, which is defect D-05.">no price</span>` : "";
-    const over = l.overridden ? `<span class="pill amber" title="Unit price overridden on this quote">override</span>` : "";
-    const errp = l.err ? `<span class="pill red" title="${esc(l.err)}">rule error</span>` : "";
-    return `<tr class="${l.qtyWithWaste ? "" : "zero"}${l.rule.manual ? " manual" : ""}">
-      <td title="${esc(m.pack || "")}">${esc(l.material)} ${flags}${missing}${over}${errp}</td>
-      <td><input data-price="${esc(l.material)}" type="number" step="0.01" placeholder="${l.missingPrice ? "" : num(l.unitPrice, 2)}" value="${quote.overrides[l.material] !== undefined ? esc(quote.overrides[l.material]) : ""}"></td>
-      <td>${money(l.unitPrice === null ? null : l.unitPrice * (1 + settings.taxRate), 2)}</td>
-      <td>${l.rule.manual ? `<input data-manual="${esc(l.material)}" type="number" step="any" value="${esc(quote.manualQty[l.material] === undefined ? "" : quote.manualQty[l.material])}">` : num(l.qtyNeeded, 2)}</td>
+    const shareClass = started && target && share > target * 1.25 ? "overpct" : (target && share < target * 0.75 ? "underpct" : "");
+    const blank = !started;
+    const cell = (v) => blank ? "" : v;
+    return `<tr class="${started && !l.qtyWithWaste ? "zero" : ""}">
+      <td title="${esc(m.pack || "")}"><span class="matname">${esc(l.material)}</span>${badgesFor(l)}</td>
+      <td><input data-price="${esc(l.material)}" type="number" step="0.01" placeholder="${l.missingPrice ? "" : num(l.unitPrice, 2)}" value="${quote.overrides[l.material] !== undefined ? esc(quote.overrides[l.material]) : ""}" aria-label="Unit price for ${esc(l.material)}"></td>
+      <td class="colDetails">${cell(money(l.unitPrice === null ? null : l.unitPrice * (1 + settings.taxRate), 2))}</td>
+      <td>${l.rule.manual ? `<input data-manual="${esc(l.material)}" type="number" step="any" value="${esc(quote.manualQty[l.material] === undefined ? "" : quote.manualQty[l.material])}" aria-label="Quantity for ${esc(l.material)}">` : cell(num(l.qtyNeeded, 2))}</td>
       <td>${pct(l.waste, 0)}</td>
-      <td>${num(l.qtyWithWaste, 0)}</td>
-      <td>${money(l.amountPreTax, 2)}</td>
-      <td>${money(l.subtotal, 2)}</td>
-      <td class="${shareClass}">${pct(share)}</td>
-      <td>${target ? pct(target) : "-"}</td></tr>`;
+      <td>${cell(num(l.qtyWithWaste, 0))}</td>
+      <td>${cell(money(l.amountPreTax, 2))}</td>
+      <td>${cell(money(l.subtotal, 2))}</td>
+      <td class="colDetails ${shareClass}">${cell(pct(share))}</td>
+      <td class="colDetails">${target ? pct(target) : ""}</td></tr>`;
   }).join("");
 
-  wrap.innerHTML = `<table><thead><tr>
-      <th>Material</th><th>Unit price</th><th>After tax</th><th>Qty needed</th><th>Waste</th>
-      <th>Qty w/ waste</th><th>Amount pre-tax</th><th>Subtotal</th><th>% of material</th><th>Target %</th>
-    </tr></thead><tbody>${rows}</tbody>
-    <tfoot><tr><td>Material total</td><td colspan="5"></td>
-      <td>${money(c.totals.materialPreTax, 2)}</td><td>${money(c.totals.materialTotal, 2)}</td><td colspan="2"></td></tr></tfoot></table>`;
+  const foot = started ? `<tfoot><tr><td>Material total</td><td></td><td class="colDetails"></td><td colspan="3"></td>
+      <td>${money(c.totals.materialPreTax, 2)}</td><td>${money(c.totals.materialTotal, 2)}</td><td class="colDetails" colspan="2"></td></tr></tfoot>` : "";
+
+  wrap.innerHTML = `<div class="${settings.showDetails ? "showDetails" : ""}" style="overflow-x:auto">
+    <table>${head}<tbody>${banner}${rows}</tbody>${foot}</table></div>`;
 }
 
 function renderLabor(c) {
-  const rows = c.labor.map((l) => `<tr><td title="${esc(l.note)}">${esc(l.line)}</td>
-    <td>${esc(l.basis)}</td><td>${money(l.rate, 2)}</td><td>${num(l.driver, 2)}</td><td>${money(l.amount, 2)}</td></tr>`).join("");
-  const supps = c.supps.map((s) => `<tr><td title="${esc(s.note)}">${esc(s.line)}</td><td colspan="3"></td>
-    <td><input data-supp="${esc(s.line)}" type="number" step="0.01" value="${esc(quote.supplementals[s.line] === undefined ? (s.amount || "") : quote.supplementals[s.line])}"></td></tr>`).join("");
-  el("labor").innerHTML = `<table><thead><tr><th>Labor</th><th>Basis</th><th>Rate</th><th>Driver</th><th>Amount</th></tr></thead>
+  const jt = quote.jobType;
+  lockCard("card-labor", !jt, "Labor rates come with the job type.");
+  if (!jt) { el("labor").innerHTML = ""; return; }
+  const started = hasTakeoff(quote);
+  const cell = (v) => started ? v : "";
+  const rows = c.labor.map((l) => `<tr><td title="${esc(l.note)}"><span class="matname">${esc(l.line)}</span></td>
+    <td>${esc(l.basis)}</td><td>${money(l.rate, 2)}</td><td>${cell(num(l.driver, 2))}</td><td>${cell(money(l.amount, 2))}</td></tr>`).join("");
+  const supps = c.supps.map((s) => `<tr><td title="${esc(s.note)}"><span class="matname">${esc(s.line)}</span><span class="badge green" title="${esc(s.note)}">manual</span></td><td colspan="3"></td>
+    <td><input data-supp="${esc(s.line)}" type="number" step="0.01" value="${esc(quote.supplementals[s.line] === undefined ? (s.amount || "") : quote.supplementals[s.line])}" aria-label="${esc(s.line)}"></td></tr>`).join("");
+  el("labor").innerHTML = `<table><thead><tr><th style="min-width:230px">Labor</th><th>Basis</th><th>Rate</th><th>Driver</th><th>Amount</th></tr></thead>
     <tbody>${rows}</tbody>
-    <tfoot><tr><td>Labor total</td><td colspan="3"></td><td>${money(c.totals.laborTotal, 2)}</td></tr></tfoot></table>
-    <table style="margin-top:10px"><thead><tr><th>Supplementals</th><th></th><th></th><th></th><th>Amount</th></tr></thead>
+    ${started ? `<tfoot><tr><td>Labor total</td><td colspan="3"></td><td>${money(c.totals.laborTotal, 2)}</td></tr></tfoot>` : ""}</table>
+    <table style="margin-top:2px"><thead><tr><th style="min-width:230px">Supplementals</th><th></th><th></th><th></th><th>Amount</th></tr></thead>
     <tbody>${supps}</tbody>
     <tfoot><tr><td>Supplementals total</td><td colspan="3"></td><td>${money(c.totals.suppTotal, 2)}</td></tr></tfoot></table>
-    <div class="assume">Supplementals are added to the grand total here. In the workbook the supplemental total cell is empty on all 16 job-type tabs, so dump fees, travel, lodging and rental equipment are typed in and then dropped from the cost. Labor totals here include every labor line, which the workbook does not do on LO-EPDM-BAL or RES-LO-TPO-MF.</div>`;
-}
-
-function renderTotals(c) {
-  const t = c.totals;
-  el("totals").innerHTML = `<table>
-    <tbody>
-      <tr><td>Material before tax</td><td>${money(t.materialPreTax, 2)}</td></tr>
-      <tr><td>Sales tax at ${pct(settings.taxRate, 2)}</td><td>${money(t.salesTax, 2)}</td></tr>
-      <tr><td>Material total</td><td>${money(t.materialTotal, 2)}</td></tr>
-      <tr><td>Material per square</td><td>${money(t.materialPerSquare, 2)}</td></tr>
-      <tr><td>Labor total</td><td>${money(t.laborTotal, 2)}</td></tr>
-      <tr><td>Labor per square</td><td>${money(t.laborPerSquare, 2)}</td></tr>
-      <tr><td>Supplementals</td><td>${money(t.suppTotal, 2)}</td></tr>
-    </tbody>
-    <tfoot><tr><td>Cost</td><td>${money(t.cost, 2)}</td></tr>
-      <tr><td>Cost per square</td><td>${money(t.costPerSquare, 2)}</td></tr></tfoot></table>
-    <table style="margin-top:10px"><thead><tr><th>Margin</th><th>Sell price</th><th>Profit</th><th>Per square</th><th></th></tr></thead><tbody>
-      ${R.margins.map((m) => {
-        const sell = t.cost / (1 - m);
-        return `<tr${m === quote.margin ? ' style="background:var(--green-lt);font-weight:600"' : ""}>
-          <td>${pct(m, 0)}</td><td>${money(sell, 0)}</td><td>${money(sell - t.cost, 0)}</td>
-          <td>${money(t.squares ? sell / t.squares : null, 0)}</td>
-          <td><button class="btn ghost" data-margin="${m}">Use</button></td></tr>`;
-      }).join("")}
-    </tbody></table>`;
+    <div class="callout" style="margin:12px 16px">Supplementals count toward the cost here. The workbook drops them on all 16 job-type tabs, and drops the first labor line on LO-EPDM-BAL and RES-LO-TPO-MF. Both are new findings, filed as D-14 and D-15.</div>`;
 }
 
 function renderOrdering(c) {
-  const rows = c.lines.filter((l) => l.qtyWithWaste > 0).map((l) => {
+  const jt = quote.jobType;
+  lockCard("card-ordering", !jt, "The purchase list builds itself from the priced takeoff.");
+  if (!jt) { el("ordering").innerHTML = ""; return; }
+  const rows = c.lines.filter((l) => l.qtyWithWaste > 0 && hasTakeoff(quote)).map((l) => {
     const m = R.materials.find((x) => x.name === l.material) || {};
-    return `<tr><td>${esc(l.material)}</td><td style="text-align:left;font-family:var(--ui)">${esc(m.pack || "")}</td>
+    return `<tr><td><span class="matname">${esc(l.material)}</span></td><td style="text-align:left;color:var(--muted)">${esc(m.pack || "")}</td>
       <td>${num(l.qtyWithWaste, 0)}</td><td>${money(l.unitPrice, 2)}</td><td>${money(l.amountPreTax, 2)}</td></tr>`;
   }).join("");
-  el("ordering").innerHTML = `<table><thead><tr><th>Material</th><th>Pack</th><th>Order qty</th><th>Unit price</th><th>Extended</th></tr></thead>
-    <tbody>${rows || `<tr><td colspan="5" class="empty">Nothing to order yet.</td></tr>`}</tbody></table>`;
+  el("ordering").innerHTML = `<table><thead><tr><th style="min-width:230px">Material</th><th style="text-align:left">Pack</th><th>Order qty</th><th>Unit price</th><th>Extended</th></tr></thead>
+    <tbody>${rows || `<tr class="emptyRow"><td colspan="5">Once quantities exist, this becomes the order list for the supplier.</td></tr>`}</tbody></table>`;
 }
 
-function renderBar(c) {
+function renderSummary(c) {
+  const wrap = el("summary");
   const t = c.totals;
-  const problems = [];
-  if (c.missingPrices && c.missingPrices.length) problems.push(c.missingPrices.length + " line" + (c.missingPrices.length > 1 ? "s" : "") + " with no price");
-  el("bar").innerHTML = `
-    <div class="item"><span class="k">Cost</span><span class="v">${money(t.cost || 0)}</span></div>
-    <div class="item"><span class="k">Per square</span><span class="v">${money(t.costPerSquare, 0)}</span></div>
-    <div class="item"><span class="k">Margin</span>
-      <select id="marginPick">${R.margins.map((m) => `<option value="${m}"${m === quote.margin ? " selected" : ""}>${pct(m, 0)}</option>`).join("")}</select></div>
-    <div class="item"><span class="k">Sell</span><span class="v sell">${money(t.sell || 0)}</span></div>
-    <div class="item"><span class="k">Profit</span><span class="v">${money(t.profit || 0)}</span></div>
-    <div class="spacer"></div>
-    ${problems.length ? `<div class="item"><span class="pill red">${esc(problems.join(", "))}</span></div>` : ""}
-    <div class="item"><button class="btn" id="saveQuote">Save quote</button></div>`;
+  if (!quote.jobType) {
+    wrap.innerHTML = `
+      <div class="sellblock"><div class="k">SELL PRICE</div><div class="v">\u2013</div>
+        <div class="minor">appears when a job is routed and measured</div></div>
+      <div class="costlines">
+        <div class="line"><span>1. Answer the job criteria</span><b>\u2190</b></div>
+        <div class="line"><span>2. Enter the takeoff</span></div>
+        <div class="line"><span>3. Pick a margin</span></div>
+        <div class="line"><span>4. Save the quote</span></div>
+      </div>
+      <div class="callout" style="margin:6px 18px 18px">Start with the eight questions at the left. Everything else follows from the job type.</div>`;
+    return;
+  }
+
+  const started = hasTakeoff(quote);
+  const warn = c.missingPrices && c.missingPrices.length
+    ? `<div class="warnrow"><span class="badge red" title="${esc(c.missingPrices.map((l) => l.material).join(", "))}">${c.missingPrices.length} line${c.missingPrices.length > 1 ? "s" : ""} priced at nothing</span></div>` : "";
+
+  wrap.innerHTML = `
+    <div class="sellblock">
+      <div class="row"><div>
+        <div class="k">SELL PRICE AT ${pct(quote.margin, 0)} MARGIN</div>
+        <div class="v">${started ? money(t.sell) : "\u2013"}</div>
+      </div></div>
+      <div class="row minor"><span>Profit <b>${started ? money(t.profit) : "\u2013"}</b></span>
+        <span>Per square <b>${started && t.squares ? money(t.sell / t.squares, 0) : "\u2013"}</b></span></div>
+    </div>
+    <div class="costlines">
+      <div class="line"><span>Material, incl. ${pct(settings.taxRate, 1)} tax</span><b>${started ? money(t.materialTotal) : "\u2013"}</b></div>
+      <div class="line"><span>Labor</span><b>${started ? money(t.laborTotal) : "\u2013"}</b></div>
+      <div class="line"><span>Supplementals</span><b>${money(t.suppTotal)}</b></div>
+      <div class="line total"><span>Cost</span><b>${started ? money(t.cost) : "\u2013"}</b></div>
+      <div class="line"><span>Cost per square</span><b>${started ? money(t.costPerSquare, 0) : "\u2013"}</b></div>
+    </div>
+    ${warn}
+    <div class="marginhead">Margin, pick one</div>
+    <div class="marginList">
+      ${R.margins.map((m) => {
+        const sell = t.cost / (1 - m);
+        return `<button type="button" class="marginOption${m === quote.margin ? " isSelected" : ""}" data-margin="${m}">
+          <span class="pct">${pct(m, 0)}</span>
+          <span class="price">${started ? money(sell) : "\u2013"}</span>
+          <span class="meta">${started && t.squares ? money(sell / t.squares, 0) + " / sq" : ""}</span></button>`;
+      }).join("")}
+    </div>
+    <div class="actions"><button class="btn big" id="saveQuote">Save quote</button></div>`;
 }
 
 function renderQuoteHeader() {
-  el("qhead").innerHTML = `
-    <div class="field"><label for="h-num">Quote number</label><input id="h-num" data-head="number" type="text" style="text-align:left;font-family:var(--ui)" value="${esc(quote.number)}"></div>
-    <div class="field"><label for="h-cust">Customer</label><input id="h-cust" data-head="customer" type="text" style="text-align:left;font-family:var(--ui)" value="${esc(quote.customer)}"></div>
-    <div class="field"><label for="h-site">Building or site</label><input id="h-site" data-head="site" type="text" style="text-align:left;font-family:var(--ui)" value="${esc(quote.site)}"></div>
-    <div class="field"><label for="h-est">Estimator</label><input id="h-est" data-head="estimator" type="text" style="text-align:left;font-family:var(--ui)" value="${esc(quote.estimator)}"></div>
-    <div class="field"><label for="h-date">Date</label><input id="h-date" data-head="date" type="date" style="text-align:left;font-family:var(--ui)" value="${esc(quote.date)}"></div>`;
+  const f = (id, key, type, val) => `<div class="field"><label for="${id}">${id === "h-num" ? "Quote number" : id === "h-cust" ? "Customer" : id === "h-site" ? "Building or site" : id === "h-est" ? "Estimator" : "Date"}</label><input id="${id}" data-head="${key}" type="${type}" style="text-align:left" value="${esc(val)}"></div>`;
+  el("qhead").innerHTML =
+    f("h-num", "number", "text", quote.number) +
+    f("h-cust", "customer", "text", quote.customer) +
+    f("h-site", "site", "text", quote.site) +
+    f("h-est", "estimator", "text", quote.estimator) +
+    f("h-date", "date", "date", quote.date);
 }
 
 function renderQuote() {
@@ -547,10 +615,9 @@ function renderQuote() {
   const c = compute(quote);
   renderMaterials(c);
   renderLabor(c);
-  renderTotals(c);
   renderOrdering(c);
-  renderBar(c);
-  el("jobtypeStamp").textContent = quote.jobType || "no job type";
+  renderSummary(c);
+  el("jobtypeStamp").textContent = quote.jobType || "no job type yet";
   return c;
 }
 
@@ -585,20 +652,20 @@ function saveCurrent() {
 
 function renderSaved() {
   const rows = saved.map((s) => `<tr>
-    <td>${esc(s.number)}${s.demo ? ' <span class="pill amber">demo</span>' : ""}</td>
-    <td style="text-align:left;font-family:var(--ui)">${esc(s.customer || "-")}</td>
-    <td style="text-align:left;font-family:var(--ui)">${esc(s.site || "-")}</td>
-    <td style="text-align:left;font-family:var(--ui)">${esc(s.jobType)}</td>
+    <td><span class="matname">${esc(s.number)}</span>${s.demo ? ' <span class="badge amber">demo</span>' : ""}</td>
+    <td style="text-align:left">${esc(s.customer || "\u2013")}</td>
+    <td style="text-align:left">${esc(s.site || "\u2013")}</td>
+    <td style="text-align:left">${esc(s.jobType)}</td>
     <td>${esc(s.issued || s.date)}</td>
     <td>${num(s.squares, 0)}</td>
     <td>${money(s.cost)}</td><td>${pct(s.margin, 0)}</td><td>${money(s.sell)}</td>
-    <td style="text-align:left;font-family:var(--ui)">${esc(s.status)}</td>
-    <td><button class="btn ghost" data-open="${esc(s.id)}">Open</button>
-        <button class="btn ghost" data-won="${esc(s.id)}">Won</button>
-        <button class="btn ghost" data-lost="${esc(s.id)}">Lost</button></td></tr>`).join("");
+    <td style="text-align:left">${esc(s.status)}</td>
+    <td style="white-space:nowrap"><button class="btn ghost" style="height:28px;padding:0 10px" data-open="${esc(s.id)}">Open</button>
+        <button class="btn ghost" style="height:28px;padding:0 10px" data-won="${esc(s.id)}">Won</button>
+        <button class="btn ghost" style="height:28px;padding:0 10px" data-lost="${esc(s.id)}">Lost</button></td></tr>`).join("");
   el("savedTable").innerHTML = saved.length ? `<table><thead><tr>
-      <th>Quote</th><th>Customer</th><th>Site</th><th>Job type</th><th>Issued</th><th>Squares</th>
-      <th>Cost</th><th>Margin</th><th>Sell</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
+      <th style="text-align:left">Quote</th><th style="text-align:left">Customer</th><th style="text-align:left">Site</th><th style="text-align:left">Job type</th><th>Issued</th><th>Squares</th>
+      <th>Cost</th><th>Margin</th><th>Sell</th><th style="text-align:left">Status</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
     : `<div class="empty">No quotes yet. Build one on the Quote tab, or load the demo pipeline to see the dashboard with data in it.</div>`;
 }
 
@@ -642,24 +709,24 @@ function loadDemo() {
   }
   saved = out.concat(saved.filter((s) => !s.demo));
   renderSaved(); renderDashboard(); refreshCounts();
-  flash("40 demo quotes loaded. These are invented numbers for the charts, not this company's data.");
+  flash("40 demo quotes loaded. Invented numbers for the charts, not this company's data.");
 }
 
 function barChart(data, opts) {
   opts = opts || {};
-  const W = 640, H = 260, padL = 54, padB = 46, padT = 14, padR = 10;
+  const W = 640, H = 270, padL = 56, padB = 50, padT = 16, padR = 10;
   const max = Math.max(1, ...data.map((d) => d.v));
   const bw = (W - padL - padR) / Math.max(1, data.length);
   const bars = data.map((d, i) => {
     const h = (d.v / max) * (H - padT - padB);
-    const x = padL + i * bw + bw * 0.14, w = bw * 0.72, y = H - padB - h;
-    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" fill="${d.c || "#1f6f43"}"></rect>
-      <text class="val" x="${(x + w / 2).toFixed(1)}" y="${(y - 3).toFixed(1)}" text-anchor="middle">${esc(opts.fmt ? opts.fmt(d.v) : d.v)}</text>
-      <text x="${(x + w / 2).toFixed(1)}" y="${H - padB + 13}" text-anchor="${data.length > 8 ? "end" : "middle"}" ${data.length > 8 ? `transform="rotate(-38 ${(x + w / 2).toFixed(1)} ${H - padB + 13})"` : ""}>${esc(d.k)}</text>`;
+    const x = padL + i * bw + bw * 0.16, w = bw * 0.68, y = H - padB - h;
+    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" rx="2" fill="${d.c || "#2c7a4b"}"></rect>
+      <text class="val" x="${(x + w / 2).toFixed(1)}" y="${(y - 4).toFixed(1)}" text-anchor="middle">${esc(opts.fmt ? opts.fmt(d.v) : d.v)}</text>
+      <text x="${(x + w / 2).toFixed(1)}" y="${H - padB + 14}" text-anchor="${data.length > 8 ? "end" : "middle"}" ${data.length > 8 ? `transform="rotate(-38 ${(x + w / 2).toFixed(1)} ${H - padB + 14})"` : ""}>${esc(d.k)}</text>`;
   }).join("");
   const ticks = [0, 0.5, 1].map((f) => {
     const y = H - padB - f * (H - padT - padB);
-    return `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="#e3e1d9"></line>
+    return `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="#e3e8e4"></line>
       <text x="${padL - 6}" y="${y + 3}" text-anchor="end">${esc(opts.fmt ? opts.fmt(max * f) : Math.round(max * f))}</text>`;
   }).join("");
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.title || "chart")}">${ticks}${bars}</svg>`;
@@ -668,7 +735,7 @@ function barChart(data, opts) {
 function renderDashboard() {
   const q = saved;
   const wrap = el("dash");
-  if (!q.length) { wrap.innerHTML = `<div class="empty">No quotes to chart yet.</div>`; return; }
+  if (!q.length) { wrap.innerHTML = `<div class="card"><div class="empty">No quotes to chart yet. Save a quote, or load the demo pipeline from the Saved quotes tab.</div></div>`; return; }
 
   const won = q.filter((s) => s.status === "Won");
   const decided = q.filter((s) => s.status === "Won" || s.status === "Lost");
@@ -679,9 +746,9 @@ function renderDashboard() {
     ["Open pipeline", money(sum(open, (s) => s.sell))],
     ["Open quotes", open.length],
     ["Won this season", money(sum(won, (s) => s.sell))],
-    ["Win rate by value", decided.length ? pct(sum(won, (s) => s.sell) / sum(decided, (s) => s.sell), 0) : "-"],
-    ["Average margin, won", won.length ? pct(sum(won, (s) => s.margin) / won.length, 0) : "-"],
-    ["Average cost per square", q.length ? money(sum(q, (s) => s.cost) / Math.max(1, sum(q, (s) => s.squares)), 0) : "-"],
+    ["Win rate by value", decided.length ? pct(sum(won, (s) => s.sell) / sum(decided, (s) => s.sell), 0) : "\u2013"],
+    ["Average margin, won", won.length ? pct(sum(won, (s) => s.margin) / won.length, 0) : "\u2013"],
+    ["Average cost per square", q.length ? money(sum(q, (s) => s.cost) / Math.max(1, sum(q, (s) => s.squares)), 0) : "\u2013"],
   ];
 
   const byMonth = {};
@@ -695,28 +762,28 @@ function renderDashboard() {
   const typeData = Object.keys(byType).sort((a, b) => byType[b].sell - byType[a].sell).slice(0, 10)
     .map((k) => ({ k, v: Math.round(byType[k].sell) }));
   const convData = Object.keys(byType).filter((k) => byType[k].n >= 2).sort()
-    .map((k) => ({ k, v: Math.round((byType[k].won / byType[k].n) * 100), c: "#a8700f" }));
+    .map((k) => ({ k, v: Math.round((byType[k].won / byType[k].n) * 100), c: "#b98a1e" }));
 
   const marginBuckets = {};
   R.margins.forEach((m) => { marginBuckets[pct(m, 0)] = 0; });
   won.forEach((s) => { const k = pct(s.margin, 0); marginBuckets[k] = (marginBuckets[k] || 0) + 1; });
-  const marginData = Object.keys(marginBuckets).map((k) => ({ k, v: marginBuckets[k], c: "#14512f" }));
+  const marginData = Object.keys(marginBuckets).map((k) => ({ k, v: marginBuckets[k], c: "#1f5b3a" }));
 
   const noPrice = R.materials.filter((m) => m.listPrice === null || m.listPrice === undefined || m.listPrice === 0);
   const varies = R.materials.filter((m) => m.priceVaries);
 
   wrap.innerHTML = `
-    <div class="block"><h2>Pipeline<span class="right">${q.length} quotes in this session</span></h2>
+    <div class="card"><h2>Pipeline<span class="right">${q.length} quotes in this session</span></h2>
       <div class="kpis">${kpis.map((k) => `<div class="kpi"><div class="v">${k[1]}</div><div class="k">${esc(k[0])}</div></div>`).join("")}</div></div>
     <div class="chartwrap">
-      <div class="block"><h2>Quoted value by month</h2><div class="body">${barChart(monthData, { fmt: (v) => "$" + Math.round(v / 1000) + "k" })}
+      <div class="card"><h2>Quoted value by month</h2><div class="body">${barChart(monthData, { fmt: (v) => "$" + Math.round(v / 1000) + "k" })}
         <div class="note">Northeast Ohio and the Ohio Valley quote March through December. The shape of this chart should drive the price refresh calendar.</div></div></div>
-      <div class="block"><h2>Quoted value by job type</h2><div class="body">${barChart(typeData, { fmt: (v) => "$" + Math.round(v / 1000) + "k" })}</div></div>
-      <div class="block"><h2>Win rate by job type, percent</h2><div class="body">${barChart(convData, { fmt: (v) => Math.round(v) + "%" })}</div></div>
-      <div class="block"><h2>Margin taken on won work</h2><div class="body">${barChart(marginData, { fmt: (v) => Math.round(v) })}
+      <div class="card"><h2>Quoted value by job type</h2><div class="body">${barChart(typeData, { fmt: (v) => "$" + Math.round(v / 1000) + "k" })}</div></div>
+      <div class="card"><h2>Win rate by job type, percent</h2><div class="body">${barChart(convData, { fmt: (v) => Math.round(v) + "%" })}</div></div>
+      <div class="card"><h2>Margin taken on won work</h2><div class="body">${barChart(marginData, { fmt: (v) => Math.round(v) })}
         <div class="note">The workbook offers twelve margin steps and records none of them. Here the choice is stored on the quote.</div></div></div>
     </div>
-    <div class="block"><h2>Data quality</h2><div class="body">
+    <div class="card"><h2>Data quality</h2><div class="body">
       <div class="note">${noPrice.length} of ${R.materials.length} materials have no usable price in the list: ${esc(noPrice.map((m) => m.name).slice(0, 8).join(", "))}${noPrice.length > 8 ? ", and others" : ""}.</div>
       <div class="note">${varies.length} materials carry more than one price across the workbook tabs: ${esc(varies.map((m) => m.name).join(", "))}.</div>
       <div class="assume">Demo quotes are invented for the charts. Cost per square, win rates and margins here mean nothing until real historical quotes are loaded.</div>
@@ -732,22 +799,21 @@ function renderRules() {
   const rules = R.rules[jt] || [];
   const rows = rules.map((r) => {
     const m = R.materials.find((x) => x.name === r.material) || {};
-    const flags = (r.flags || []).map((f) => `<span class="flag" title="${esc(f)}">!</span>`).join("");
-    const corrected = r.correctedExpr ? `<div class="rule" style="color:var(--green-dk)">corrected: ${esc(r.correctedExpr)}</div>` : "";
+    const flags = (r.flags || []).filter((f) => /DEFECT/.test(f)).map((f) => `<span class="badge red" title="${esc(f)}">suspected defect</span>`).join("");
+    const corrected = r.correctedExpr ? `<div class="rule" style="color:var(--pine)">corrected: ${esc(r.correctedExpr)}</div>` : "";
     return `<tr>
-      <td>${esc(r.material)} ${flags}</td>
+      <td><span class="matname">${esc(r.material)}</span>${flags}${m.priceVaries ? `<span class="badge amber" title="Workbook prices: ${esc(m.priceVariants || "")}">price varies</span>` : ""}</td>
       <td style="text-align:left"><div class="rule">${r.manual ? "manual entry" : esc(ruleExpr(r))}</div>${corrected}</td>
       <td>${pct(r.waste, 0)}</td><td>${esc(r.rounding)}</td><td>${r.minQty}</td>
-      <td><input data-listprice="${esc(r.material)}" type="number" step="0.01" value="${m.listPrice === null || m.listPrice === undefined ? "" : m.listPrice}"></td>
-      <td>${m.priceVaries ? `<span class="pill amber" title="Workbook prices: ${esc(m.priceVariants || "")}">varies</span>` : ""}</td>
-      <td style="text-align:left;font-family:var(--ui);font-size:11.5px">${esc(m.note || "")}</td></tr>`;
+      <td><input data-listprice="${esc(r.material)}" type="number" step="0.01" value="${m.listPrice === null || m.listPrice === undefined ? "" : m.listPrice}" aria-label="List price for ${esc(r.material)}"></td>
+      <td style="text-align:left;color:var(--muted);font-size:12.5px;white-space:normal;min-width:260px">${esc(m.note || "")}</td></tr>`;
   }).join("");
-  el("ruleTable").innerHTML = `<table><thead><tr><th>Material</th><th style="text-align:left">Quantity rule</th><th>Waste</th><th>Rounding</th><th>Min qty</th><th>List price</th><th></th><th style="text-align:left">Estimator note</th></tr></thead><tbody>${rows}</tbody></table>`;
+  el("ruleTable").innerHTML = `<div style="overflow-x:auto"><table><thead><tr><th style="min-width:240px">Material</th><th style="text-align:left;min-width:320px">Quantity rule</th><th>Waste</th><th>Rounding</th><th>Min qty</th><th>List price</th><th style="text-align:left">Estimator note</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 
-  const lab = (R.labor[jt] || []).map((l) => `<tr><td>${esc(l.line)}</td><td>${esc(l.basis)}</td>
+  const lab = (R.labor[jt] || []).map((l) => `<tr><td><span class="matname">${esc(l.line)}</span></td><td>${esc(l.basis)}</td>
     <td>${money(l.basis === "per detail" ? settings.detailLaborRate : l.rate, 2)}</td>
-    <td style="text-align:left;font-family:var(--ui)"><span class="rule">${esc(l.driver)}</span></td></tr>`).join("");
-  el("laborTable").innerHTML = `<table><thead><tr><th>Labor line</th><th>Basis</th><th>Rate</th><th style="text-align:left">Driver</th></tr></thead><tbody>${lab}</tbody></table>`;
+    <td style="text-align:left"><span class="rule">${esc(l.driver)}</span></td></tr>`).join("");
+  el("laborTable").innerHTML = `<table><thead><tr><th style="min-width:240px">Labor line</th><th>Basis</th><th>Rate</th><th style="text-align:left">Driver</th></tr></thead><tbody>${lab}</tbody></table>`;
 }
 
 function renderIntegrity() {
@@ -758,12 +824,12 @@ function renderIntegrity() {
   }));
   el("integrity").innerHTML = `
     <div class="note">${bad.length === 0 ? "All " + Object.keys(R.rules).reduce((a, k) => a + R.rules[k].length, 0) + " quantity rules parse, and every rule references only inputs its job type collects." : bad.length + " rules failed validation."}</div>
-    ${bad.length ? `<table><thead><tr><th>Job type</th><th>Material</th><th style="text-align:left">Problem</th></tr></thead><tbody>${bad.map((b) => `<tr><td>${esc(b.jobType)}</td><td>${esc(b.material)}</td><td style="text-align:left;font-family:var(--ui)">${esc(b.err)}</td></tr>`).join("")}</tbody></table>` : ""}
-    <h3 style="font-size:13px;margin:12px 0 4px">Suspected copy-paste defects, for the estimators to rule on</h3>
-    <table><thead><tr><th>Job type</th><th>Material</th><th style="text-align:left">Workbook rule</th><th style="text-align:left">Proposed correction</th></tr></thead><tbody>
-      ${drift.map((d) => `<tr><td>${esc(d.jt)}</td><td>${esc(d.r.material)}</td>
-        <td style="text-align:left"><span class="rule">${esc(d.r.expr)}</span></td>
-        <td style="text-align:left"><span class="rule">${esc(d.r.correctedExpr || "")}</span></td></tr>`).join("")}
+    ${bad.length ? `<table><thead><tr><th>Job type</th><th>Material</th><th style="text-align:left">Problem</th></tr></thead><tbody>${bad.map((b) => `<tr><td>${esc(b.jobType)}</td><td>${esc(b.material)}</td><td style="text-align:left">${esc(b.err)}</td></tr>`).join("")}</tbody></table>` : ""}
+    <h3 style="font-size:14px;margin:16px 0 6px">Suspected copy-paste defects, for the estimators to rule on</h3>
+    <table><thead><tr><th style="text-align:left">Job type</th><th style="text-align:left">Material</th><th style="text-align:left">Workbook rule</th><th style="text-align:left">Proposed correction</th></tr></thead><tbody>
+      ${drift.map((d) => `<tr><td style="text-align:left">${esc(d.jt)}</td><td style="text-align:left">${esc(d.r.material)}</td>
+        <td style="text-align:left;white-space:normal"><span class="rule">${esc(d.r.expr)}</span></td>
+        <td style="text-align:left;white-space:normal"><span class="rule">${esc(d.r.correctedExpr || "")}</span></td></tr>`).join("")}
     </tbody></table>`;
 }
 
@@ -784,7 +850,6 @@ function refreshCounts() { el("savedCount").textContent = saved.length ? "(" + s
 function showPanel(name) {
   document.querySelectorAll("nav.tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.panel === name)));
   document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("on", p.id === "panel-" + name));
-  el("bar").style.display = name === "quote" ? "flex" : "none";
   if (name === "dash") renderDashboard();
   if (name === "rules") { renderRules(); renderIntegrity(); }
 }
@@ -794,10 +859,10 @@ function wire() {
 
   document.addEventListener("change", (e) => {
     const t = e.target;
-    if (t.id === "marginPick") { quote.margin = Number(t.value); renderQuote(); }
-    else if (t.dataset.sel !== undefined) { quote.answers[t.dataset.sel] = t.value; renderQuote(); }
+    if (t.dataset.sel !== undefined) { quote.answers[t.dataset.sel] = t.value; renderQuote(); }
     else if (t.dataset.head !== undefined) { quote[t.dataset.head] = t.value; }
     else if (t.id === "ruleJobType") { renderRules(); }
+    else if (t.id === "detailsToggle") { settings.showDetails = t.checked; const c = compute(quote); renderMaterials(c); }
     else if (t.id === "taxRate") { settings.taxRate = (Number(t.value) || 0) / 100; renderQuote(); }
     else if (t.id === "detailRate") { settings.detailLaborRate = Number(t.value) || 0; renderQuote(); renderRules(); }
     else if (t.id === "pricingMode") { settings.pricingMode = t.value; renderQuote(); }
@@ -821,9 +886,9 @@ function wire() {
         : `[data-supp="${CSS.escape(t.dataset.supp)}"]`;
       const hadFocus = document.activeElement === t;
       const c = compute(quote);
-      renderMaterials(c); renderLabor(c); renderTotals(c); renderOrdering(c); renderBar(c);
+      renderMaterials(c); renderLabor(c); renderOrdering(c); renderSummary(c);
       if (t.dataset.input !== undefined) {
-        t.classList.toggle("dirty", !!t.value);   // left column is not rebuilt
+        t.classList.toggle("dirty", !!t.value);   // the rail is not rebuilt
         return;
       }
       const again = document.querySelector(sel);
@@ -835,16 +900,16 @@ function wire() {
   });
 
   document.addEventListener("click", (e) => {
-    const t = e.target;
+    const t = e.target.closest ? (e.target.closest("[data-margin]") || e.target) : e.target;
     if (t.id === "saveQuote") saveCurrent();
-    else if (t.dataset.margin) { quote.margin = Number(t.dataset.margin); renderQuote(); }
+    else if (t.dataset && t.dataset.margin) { quote.margin = Number(t.dataset.margin); const c = compute(quote); renderSummary(c); }
     else if (t.id === "newQuote") { quote = blankQuote(); renderQuote(); showPanel("quote"); }
     else if (t.id === "loadDemo") loadDemo();
     else if (t.id === "clearDemo") { saved = saved.filter((s) => !s.demo); renderSaved(); renderDashboard(); refreshCounts(); }
     else if (t.id === "exportQuotes") exportJSON();
-    else if (t.dataset.open) { const s = saved.find((x) => x.id === t.dataset.open); if (s) { quote = JSON.parse(JSON.stringify(s)); showPanel("quote"); renderQuote(); } }
-    else if (t.dataset.won) { const s = saved.find((x) => x.id === t.dataset.won); if (s) { s.status = "Won"; renderSaved(); renderDashboard(); } }
-    else if (t.dataset.lost) { const s = saved.find((x) => x.id === t.dataset.lost); if (s) { s.status = "Lost"; renderSaved(); renderDashboard(); } }
+    else if (t.dataset && t.dataset.open) { const s = saved.find((x) => x.id === t.dataset.open); if (s) { quote = JSON.parse(JSON.stringify(s)); showPanel("quote"); renderQuote(); } }
+    else if (t.dataset && t.dataset.won) { const s = saved.find((x) => x.id === t.dataset.won); if (s) { s.status = "Won"; renderSaved(); renderDashboard(); } }
+    else if (t.dataset && t.dataset.lost) { const s = saved.find((x) => x.id === t.dataset.lost); if (s) { s.status = "Lost"; renderSaved(); renderDashboard(); } }
   });
 
   el("importFile").addEventListener("change", (e) => {
@@ -874,11 +939,10 @@ function exportJSON() {
 }
 
 function boot() {
-  el("ruleJobType").innerHTML = R.jobTypes.map((j) => `<option value="${esc(j.code)}">${esc(j.code)} - ${esc(j.label)}</option>`).join("");
+  el("ruleJobType").innerHTML = R.jobTypes.map((j) => `<option value="${esc(j.code)}">${esc(j.code)} \u2013 ${esc(j.label)}</option>`).join("");
   el("taxRate").value = (settings.taxRate * 100).toFixed(2);
   el("detailRate").value = settings.detailLaborRate;
-  el("buildStamp").textContent = R.meta.built;
-  el("counts").textContent = `${R.jobTypes.length} job types, ${R.materials.length} materials, ${Object.keys(R.rules).reduce((a, k) => a + R.rules[k].length, 0)} quantity rules`;
+  el("counts").textContent = `${R.jobTypes.length} job types \u00b7 ${R.materials.length} materials \u00b7 ${Object.keys(R.rules).reduce((a, k) => a + R.rules[k].length, 0)} rules`;
   wire();
   renderQuote();
   renderSaved();
