@@ -1,0 +1,6839 @@
+{
+ "meta": {
+  "source": "Master_Copy__Commercial_Roofing_Quote_Template__20260630.xlsx",
+  "via": "Roofing_Estimator_Spec_Extract.xlsx",
+  "built": "2026-09-15",
+  "taxRate": 0.07,
+  "taxNote": "ASSUMPTION: 7 percent, taken from the *1.07 hardcoded in the workbook. Confirm the county rate and the out of state rule (interview Block 4).",
+  "detailLaborRate": 25.0,
+  "priceNote": "ASSUMPTION: unit prices are a snapshot from the master copy on 2026-09-15, not a validated price list. Vendor confirmation required in Phase 0."
+ },
+ "jobTypes": [
+  {
+   "code": "Restoration",
+   "removal": null,
+   "membrane": "Coating",
+   "attachment": null,
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": true,
+   "label": "Restoration / coating"
+  },
+  {
+   "code": "TO-TPO-MF",
+   "removal": "Tear off",
+   "membrane": "TPO",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Tear off, TPO, mechanically fastened"
+  },
+  {
+   "code": "TO-TPO-FA",
+   "removal": "Tear off",
+   "membrane": "TPO",
+   "attachment": "Fully adhered",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Tear off, TPO, fully adhered"
+  },
+  {
+   "code": "TO-EPDM-MF",
+   "removal": "Tear off",
+   "membrane": "EPDM",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Tear off, EPDM, mechanically fastened"
+  },
+  {
+   "code": "TO-EPDM-FA",
+   "removal": "Tear off",
+   "membrane": "EPDM",
+   "attachment": "Fully adhered",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Tear off, EPDM, fully adhered"
+  },
+  {
+   "code": "LO-TPO-MF",
+   "removal": "Lay over",
+   "membrane": "TPO",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Lay over, TPO, mechanically fastened"
+  },
+  {
+   "code": "LO-TPO-FA",
+   "removal": "Lay over",
+   "membrane": "TPO",
+   "attachment": "Fully adhered",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Lay over, TPO, fully adhered"
+  },
+  {
+   "code": "LO-EPDM-MF",
+   "removal": "Lay over",
+   "membrane": "EPDM",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Lay over, EPDM, mechanically fastened"
+  },
+  {
+   "code": "LO-EPDM-FA",
+   "removal": "Lay over",
+   "membrane": "EPDM",
+   "attachment": "Fully adhered",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Lay over, EPDM, fully adhered"
+  },
+  {
+   "code": "LO-EPDM-BAL",
+   "removal": "Lay over",
+   "membrane": "EPDM",
+   "attachment": "Ballasted",
+   "deck": "Standard",
+   "reskin": false,
+   "restoration": false,
+   "label": "Lay over, EPDM, ballasted"
+  },
+  {
+   "code": "CON-TO-TPO-FA",
+   "removal": "Tear off",
+   "membrane": "TPO",
+   "attachment": "Fully adhered",
+   "deck": "Concrete",
+   "reskin": false,
+   "restoration": false,
+   "label": "Concrete deck, Tear off, TPO, fully adhered"
+  },
+  {
+   "code": "CON-TO-EPDM-FA",
+   "removal": "Tear off",
+   "membrane": "EPDM",
+   "attachment": "Fully adhered",
+   "deck": "Concrete",
+   "reskin": false,
+   "restoration": false,
+   "label": "Concrete deck, Tear off, EPDM, fully adhered"
+  },
+  {
+   "code": "CON-LO-TPO-FA",
+   "removal": "Lay over",
+   "membrane": "TPO",
+   "attachment": "Fully adhered",
+   "deck": "Concrete",
+   "reskin": false,
+   "restoration": false,
+   "label": "Concrete deck, Lay over, TPO, fully adhered"
+  },
+  {
+   "code": "CON-LO-EPDM-FA",
+   "removal": "Lay over",
+   "membrane": "EPDM",
+   "attachment": "Fully adhered",
+   "deck": "Concrete",
+   "reskin": false,
+   "restoration": false,
+   "label": "Concrete deck, Lay over, EPDM, fully adhered"
+  },
+  {
+   "code": "RES-LO-TPO-MF",
+   "removal": "Lay over",
+   "membrane": "TPO",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": true,
+   "restoration": false,
+   "label": "Reskin, Lay over, TPO, mechanically fastened"
+  },
+  {
+   "code": "RES-LO-EPDM-MF",
+   "removal": "Lay over",
+   "membrane": "EPDM",
+   "attachment": "Mechanically fastened",
+   "deck": "Standard",
+   "reskin": true,
+   "restoration": false,
+   "label": "Reskin, Lay over, EPDM, mechanically fastened"
+  }
+ ],
+ "inputs": [
+  {
+   "key": "Square Footage of Membrane",
+   "label": "Square Footage of Membrane",
+   "help": "",
+   "order": 8
+  },
+  {
+   "key": "Parapet Wall / Metal Cap L/F",
+   "label": "Parapet Wall / Metal Cap L/F",
+   "help": "",
+   "order": 12
+  },
+  {
+   "key": "Parapet Metal Dimensions",
+   "label": "Parapet Metal Dimensions",
+   "help": "",
+   "order": 10
+  },
+  {
+   "key": "Number of Roof Penetrations",
+   "label": "Number of Roof Penetrations",
+   "help": "Not counting AC units. Number of 1-6\" Pen.",
+   "order": 11
+  },
+  {
+   "key": "Pipe Boots to Replace",
+   "label": "Pipe Boots to Replace",
+   "help": "",
+   "order": 12
+  },
+  {
+   "key": "Number of breaches",
+   "label": "Number of breaches",
+   "help": "Count of discovered tears, punctures, etc. in roof during roof inspection",
+   "order": 13
+  },
+  {
+   "key": "Square footage of ponding water",
+   "label": "Square footage of ponding water",
+   "help": "",
+   "order": 14
+  },
+  {
+   "key": "Scupper Boxes",
+   "label": "Scupper Boxes",
+   "help": "",
+   "order": 15
+  },
+  {
+   "key": "Standard AC Units (5'x3')",
+   "label": "Standard AC Units (5'x3')",
+   "help": "",
+   "order": 16
+  },
+  {
+   "key": "Medium AC Units (7'x5')",
+   "label": "Medium AC Units (7'x5')",
+   "help": "",
+   "order": 17
+  },
+  {
+   "key": "Large AC Units (15'x10')",
+   "label": "Large AC Units (15'x10')",
+   "help": "",
+   "order": 18
+  },
+  {
+   "key": "Square Footage w/o Parapet Walls",
+   "label": "Square Footage w/o Parapet Walls",
+   "help": "",
+   "order": 8
+  },
+  {
+   "key": "Square Footage w/ Parapet Walls",
+   "label": "Square Footage w/ Parapet Walls",
+   "help": "",
+   "order": 9
+  },
+  {
+   "key": "Insulation Squares",
+   "label": "Insulation Squares",
+   "help": "Squares equal square feet divided by 100",
+   "order": 10
+  },
+  {
+   "key": "Membrane Squares",
+   "label": "Membrane Squares",
+   "help": "Squares equal square feet divided by 100",
+   "order": 11
+  },
+  {
+   "key": "Parapet Wall S/F",
+   "label": "Parapet Wall S/F",
+   "help": "",
+   "order": 13
+  },
+  {
+   "key": "Screw Length",
+   "label": "Screw Length",
+   "help": "in inches",
+   "order": 14
+  },
+  {
+   "key": "Metal Dimensions",
+   "label": "Metal Dimensions",
+   "help": "",
+   "order": 15
+  },
+  {
+   "key": "Required ISO Thickness",
+   "label": "Required ISO Thickness",
+   "help": "in inches",
+   "order": 16
+  },
+  {
+   "key": "Gutter Line / Flat Termination L/F",
+   "label": "Gutter Line / Flat Termination L/F",
+   "help": "Anywhere that there is a flat/horizontal termination, which includes gutters but there are instances where no gutter will be present",
+   "order": 17
+  },
+  {
+   "key": "Number of Penetrations",
+   "label": "Number of Penetrations",
+   "help": "Not counting AC units. Number of 1-6\" Pen.",
+   "order": 18
+  },
+  {
+   "key": "Inside Corners",
+   "label": "Inside Corners",
+   "help": "",
+   "order": 20
+  },
+  {
+   "key": "Outside Corners",
+   "label": "Outside Corners",
+   "help": "Counting roof outside corners, AC Units, etc.",
+   "order": 21
+  },
+  {
+   "key": "Drains",
+   "label": "Drains",
+   "help": "Field drains",
+   "order": 22
+  },
+  {
+   "key": "Gutter Line L/F",
+   "label": "Gutter Line L/F",
+   "help": "Anywhere that there is a flat/horizontal termination, which includes gutters but there are instances where no gutter will be present",
+   "order": 17
+  }
+ ],
+ "jobInputs": {
+  "Restoration": [
+   "Square Footage of Membrane",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Metal Dimensions",
+   "Number of Roof Penetrations",
+   "Pipe Boots to Replace",
+   "Number of breaches",
+   "Square footage of ponding water",
+   "Scupper Boxes",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "TO-TPO-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line / Flat Termination L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "TO-TPO-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "TO-EPDM-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "TO-EPDM-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "LO-TPO-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line / Flat Termination L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "LO-TPO-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "LO-EPDM-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "LO-EPDM-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "LO-EPDM-BAL": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "CON-TO-TPO-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "CON-TO-EPDM-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "CON-LO-TPO-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "CON-LO-EPDM-FA": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "RES-LO-TPO-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line / Flat Termination L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ],
+  "RES-LO-EPDM-MF": [
+   "Square Footage w/o Parapet Walls",
+   "Square Footage w/ Parapet Walls",
+   "Insulation Squares",
+   "Membrane Squares",
+   "Parapet Wall / Metal Cap L/F",
+   "Parapet Wall S/F",
+   "Screw Length",
+   "Metal Dimensions",
+   "Required ISO Thickness",
+   "Gutter Line L/F",
+   "Number of Penetrations",
+   "Scupper Boxes",
+   "Inside Corners",
+   "Outside Corners",
+   "Drains",
+   "Standard AC Units (5'x3')",
+   "Medium AC Units (7'x5')",
+   "Large AC Units (15'x10')"
+  ]
+ },
+ "materials": [
+  {
+   "name": "Silicone 44",
+   "listPrice": 36.58,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Est. rate of 1.5 gallons per square at 24 mils thickness for membrane roofs. Est. rate of 3.0 gallons per square at 24 mils thickness for asphaultic roofs with \"alligatoring\" surface. Sherwin Williams",
+   "note": "Per 5 gallon bucket. Calculated by dividing the square footage of the roof area by 100. This includes any membrane along parapet walls that will be coated with silicone."
+  },
+  {
+   "name": "One Flash",
+   "listPrice": 41.0,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Est. rate of 0.2 gallons per square at 60 mils thickness - Sherwin Williams",
+   "note": "Per 2 gallon bucket. Used for all seams, joints, penetrations and membrane overlaps"
+  },
+  {
+   "name": "Soft Fabric (sq. ft)",
+   "listPrice": 0.0,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Unit is 40\" x 324' roll (confirm size & cost)",
+   "note": "Used on asphaultic type roofs"
+  },
+  {
+   "name": "Firm Fabric (sq. ft)",
+   "listPrice": 0.0,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Unit is 40\" x 324' roll (confirm size & cost)",
+   "note": "Used on EPDM, TPO, Membrane type roofs"
+  },
+  {
+   "name": "Chip Brushes",
+   "listPrice": 0.53,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "$0.53 per brush - Amazon",
+   "note": "Typically only need 10 brushes per restoration job if it is completed in one day. If this will be a multi-day restroation job, add 10 brushes per day. Change the forumla to 10, 20, etc. in cell C25."
+  },
+  {
+   "name": "Trash Bags",
+   "listPrice": 24.97,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "1 box of 32 bags - 42 gallon size - Home Depot",
+   "note": "Needed to wrap empty silicone and one flash buckets in before disposing"
+  },
+  {
+   "name": "Pipe Boots",
+   "listPrice": 33.93,
+   "priceNote": null,
+   "pricesByJobType": {
+    "Restoration": null,
+    "TO-TPO-MF": 33.93,
+    "TO-TPO-FA": 33.93,
+    "TO-EPDM-MF": 33.93,
+    "TO-EPDM-FA": 33.93,
+    "LO-TPO-MF": 33.93,
+    "LO-TPO-FA": 33.93,
+    "LO-EPDM-MF": 33.93,
+    "LO-EPDM-FA": 33.93,
+    "LO-EPDM-BAL": 33.93,
+    "CON-TO-TPO-FA": 33.93,
+    "CON-TO-EPDM-FA": 33.93,
+    "CON-LO-TPO-FA": 33.93,
+    "CON-LO-EPDM-FA": 33.93,
+    "RES-LO-TPO-MF": 33.93,
+    "RES-LO-EPDM-MF": 33.93
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "RES-LO-EPDM-MF",
+    "RES-LO-TPO-MF",
+    "Restoration",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.02,
+   "pack": "1\" to 6\" sizes - QXO/ABC Supply",
+   "note": "Based on \"pipe boots needing replaced\" count, excluding AC Units"
+  },
+  {
+   "name": "EPDM Quickseam Flashing  (priced per patch, not per roll - see note)",
+   "listPrice": 2.29175,
+   "priceNote": "Derived from the workbook: $275.01 per 5 in x 100 ft roll, priced per 10 in patch",
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "1 roll of 5\"x100' = $275.01",
+   "note": "Cost is per 10\" piece from this roll. Typically use ~10\" strip to repair a puncture or minor tear"
+  },
+  {
+   "name": "Splice Cleaner",
+   "listPrice": 126.45,
+   "priceNote": null,
+   "pricesByJobType": {
+    "Restoration": 37.5,
+    "TO-TPO-MF": 126.45,
+    "TO-TPO-FA": 126.45,
+    "TO-EPDM-MF": 126.45,
+    "TO-EPDM-FA": 126.45,
+    "LO-TPO-MF": 126.45,
+    "LO-TPO-FA": 126.45,
+    "LO-EPDM-MF": 126.45,
+    "LO-EPDM-FA": 126.45,
+    "LO-EPDM-BAL": 126.45,
+    "CON-TO-TPO-FA": 126.45,
+    "CON-TO-EPDM-FA": 126.45,
+    "CON-LO-TPO-FA": 126.45,
+    "CON-LO-EPDM-FA": 126.45,
+    "RES-LO-TPO-MF": 126.45,
+    "RES-LO-EPDM-MF": 126.45
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "RES-LO-EPDM-MF",
+    "RES-LO-TPO-MF",
+    "Restoration",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": true,
+   "priceVariants": "37.50; 126.45",
+   "blankOnSomeTab": false,
+   "targetPct": 0.001,
+   "pack": "Comes in a 1 gallon pail - QXO/ABC Supply",
+   "note": "Used at a rate of 1 gallon for 250 square feet"
+  },
+  {
+   "name": "Primer",
+   "listPrice": 49.44,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Comes in a 1 gallon pail - QXO/ABC Supply",
+   "note": "Used at a rate of 1 gallon for 250 square feet"
+  },
+  {
+   "name": "MS Hybrid",
+   "listPrice": 9.26,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Comes in a 10 oz tube - Sherwin Williams",
+   "note": "Used as sealant other than one flash - typically yields 16 linear feet with a 3/8\" size bead"
+  },
+  {
+   "name": "Grommet Screws",
+   "listPrice": 56.73,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.005,
+   "pack": "Home Depot",
+   "note": "General 1.5\" self tapping screws (priced quantity is 300). 2 screws needed per 12\" of metal parapet wall flashing. Confirm for wood or concrete. QXO does not supply these."
+  },
+  {
+   "name": "Roof Vents",
+   "listPrice": 26.19,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "ABC Supply",
+   "note": "On average, one vent needed for every 1,000 sq. ft. of damp areas. For dry pressure relief, one-way vents at 2,000 sq. ft. Aluminum vents for EPDM and weldable vents (plastic) for TPO. Vents must be mechanically fastened to the deck."
+  },
+  {
+   "name": "Metal Primer",
+   "listPrice": 182.0,
+   "priceNote": null,
+   "pricesByJobType": {
+    "Restoration": null,
+    "TO-TPO-MF": 182.0,
+    "TO-TPO-FA": 182.0,
+    "TO-EPDM-MF": 182.0,
+    "TO-EPDM-FA": 182.0,
+    "LO-TPO-MF": 182.0,
+    "LO-TPO-FA": 182.0,
+    "LO-EPDM-MF": 182.0,
+    "LO-EPDM-FA": 182.0,
+    "LO-EPDM-BAL": 182.0,
+    "CON-TO-TPO-FA": 182.0,
+    "CON-TO-EPDM-FA": 182.0,
+    "CON-LO-TPO-FA": 182.0,
+    "CON-LO-EPDM-FA": 182.0,
+    "RES-LO-TPO-MF": 182.0,
+    "RES-LO-EPDM-MF": 182.0
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "RES-LO-EPDM-MF",
+    "RES-LO-TPO-MF",
+    "Restoration",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.005,
+   "pack": "5 Gallon Bucket - Uniflex Acrylic Rust Primer",
+   "note": "The unit cost should not change."
+  },
+  {
+   "name": "Metal Paint",
+   "listPrice": 254.75,
+   "priceNote": null,
+   "pricesByJobType": {
+    "Restoration": null,
+    "TO-TPO-MF": 254.75,
+    "TO-TPO-FA": 254.75,
+    "TO-EPDM-MF": 254.75,
+    "TO-EPDM-FA": 254.75,
+    "LO-TPO-MF": 254.75,
+    "LO-TPO-FA": 254.75,
+    "LO-EPDM-MF": 254.75,
+    "LO-EPDM-FA": 254.75,
+    "LO-EPDM-BAL": 254.75,
+    "CON-TO-TPO-FA": 254.75,
+    "CON-TO-EPDM-FA": 254.75,
+    "CON-LO-TPO-FA": 254.75,
+    "CON-LO-EPDM-FA": 254.75,
+    "RES-LO-TPO-MF": 254.75,
+    "RES-LO-EPDM-MF": 254.75
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "RES-LO-EPDM-MF",
+    "RES-LO-TPO-MF",
+    "Restoration",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.005,
+   "pack": "5 Gallon Bucket - Sherwin Williams Multi-Acrylic Paint",
+   "note": "The unit cost should not change."
+  },
+  {
+   "name": "TPO Membrane",
+   "listPrice": 795.5,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.25,
+   "pack": "Unit is typically as 10' x 100' roll of reinforced membrane, can be purchased in 5'x100' rolls",
+   "note": "Calculated by determining the square footage of all membrane, including parapet walls, curbs, and membrane wrapped over the roof under the flashing."
+  },
+  {
+   "name": "TPO Cover Tape (sticky one side)",
+   "listPrice": 394.19,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.022,
+   "pack": "Unit is 6\" x 50' roll of reinforced TPO",
+   "note": "Will be needed when gutters are present, or any flat termination where parapet walls are not present."
+  },
+  {
+   "name": "TPO Detail Flashing (nonsticky)",
+   "listPrice": 378.08,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.03,
+   "pack": "Unit is 24\" x 50' roll of nonreinforced TPO",
+   "note": "Calculated by measuring the # and size of HVAC units, detail flashing will also be used for penetrations"
+  },
+  {
+   "name": "Russ Strip",
+   "listPrice": 222.66,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.03,
+   "pack": "6\" x 100' rolls, used on perimiter with parapet walls.",
+   "note": "Used to adhere the perimeter of the membrane and keep it in place"
+  },
+  {
+   "name": "Flat Insulation  (only choose one type of insulation)",
+   "listPrice": 113.4,
+   "priceNote": null,
+   "pricesByJobType": {
+    "TO-TPO-MF": 113.4,
+    "TO-TPO-FA": 113.4,
+    "TO-EPDM-MF": 113.4,
+    "TO-EPDM-FA": 113.4,
+    "LO-TPO-MF": 64.89,
+    "LO-TPO-FA": 64.89,
+    "LO-EPDM-MF": 64.89,
+    "LO-EPDM-FA": 113.4,
+    "LO-EPDM-BAL": 64.89,
+    "CON-TO-TPO-FA": 113.4,
+    "CON-TO-EPDM-FA": 113.4,
+    "CON-LO-TPO-FA": 64.89,
+    "CON-LO-EPDM-FA": 113.4
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": true,
+   "priceVariants": "64.89; 113.40",
+   "blankOnSomeTab": false,
+   "targetPct": 0.25,
+   "pack": "Comes in 8x4 and 4x4 sheets.",
+   "note": "Generally Poly ISO, can be other more cost effective types. 5.2\" is needed for R-30 in most areas of the MidWest. MAKE SURE YOU ARE PRICING THIS BY 8X4, 4X4 OR PER SQUARE. Not using the correct method will dramaticly affect your quote."
+  },
+  {
+   "name": "Flat Insulation  (for additional layers)",
+   "listPrice": 113.4,
+   "priceNote": null,
+   "pricesByJobType": {
+    "TO-TPO-MF": 113.4,
+    "TO-TPO-FA": 113.4,
+    "TO-EPDM-MF": 113.4,
+    "TO-EPDM-FA": 113.4,
+    "LO-TPO-MF": 0.0,
+    "LO-TPO-FA": 0.0,
+    "LO-EPDM-MF": 0.0,
+    "LO-EPDM-FA": 64.89,
+    "LO-EPDM-BAL": 0.0,
+    "CON-TO-TPO-FA": 113.4,
+    "CON-TO-EPDM-FA": 113.4,
+    "CON-LO-TPO-FA": 0.0,
+    "CON-LO-EPDM-FA": 64.89
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": true,
+   "priceVariants": "0.00; 64.89; 113.40",
+   "blankOnSomeTab": false,
+   "targetPct": 0.25,
+   "pack": "",
+   "note": "Only use this line if you need an additional layer of insulation"
+  },
+  {
+   "name": "Tapered Insulation  (only choose one type of insulation)",
+   "listPrice": 0.0,
+   "priceNote": null,
+   "pricesByJobType": {
+    "TO-TPO-MF": null,
+    "TO-TPO-FA": null,
+    "TO-EPDM-MF": null,
+    "TO-EPDM-FA": null,
+    "LO-TPO-MF": 0.0,
+    "LO-TPO-FA": null,
+    "LO-EPDM-MF": null,
+    "LO-EPDM-FA": null,
+    "LO-EPDM-BAL": null,
+    "CON-TO-TPO-FA": null,
+    "CON-TO-EPDM-FA": null,
+    "CON-LO-TPO-FA": null,
+    "CON-LO-EPDM-FA": null
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.24,
+   "pack": "",
+   "note": "This insulation MUST be designed by an engineer and will only be applicable on roofs where drainage relies solely on the insulations pitch. Quote from engineer will be placed in unit price field."
+  },
+  {
+   "name": "Bonding Adhesive",
+   "listPrice": 149.15,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.03,
+   "pack": "Comes in a 5 gallon pail",
+   "note": "Generally we would need one 5 gallon pail per 5 squares when fully adhered."
+  },
+  {
+   "name": "TPO Primer",
+   "listPrice": 51.25,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "1 gallon cans",
+   "note": "Priced for 1 gal pails - ratio is 200 s/f per gal"
+  },
+  {
+   "name": "TPO Cut Edge Sealant",
+   "listPrice": 21.51,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "16 oz bottles",
+   "note": "Formula assumes 1-16 oz bottle per 10 squares of field membrane"
+  },
+  {
+   "name": "Drip Edge 3x3 L Metal",
+   "listPrice": null,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.01,
+   "pack": "General comes in 10' sections",
+   "note": "Will be needed when gutters are present, or any flat penetration where parameters walls are not present."
+  },
+  {
+   "name": "SS Clamp Kit",
+   "listPrice": null,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.01,
+   "pack": "Box of 50",
+   "note": "Clamps for pipe boots. Check current supplies for clamps."
+  },
+  {
+   "name": "ISO Fastener Plates",
+   "listPrice": 241.36,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.02,
+   "pack": "3\" plates, Box of 1,000",
+   "note": "Formula based on 12 screws per 4x8 sheet average. You will need between 4 and 16 plates/screws per 4x8 sheet depending on insulation type and fastening type (MF vs FA)"
+  },
+  {
+   "name": "MF Seam Plates",
+   "listPrice": 422.39,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.01,
+   "pack": "Box of 1,000",
+   "note": "Screws calculated by sqaure footage divided by 9"
+  },
+  {
+   "name": "Fastener Screws",
+   "listPrice": 385.51,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.04,
+   "pack": "Box of 1,000",
+   "note": "Sum of Seam Plates and ISO Plates. Note screw length for FYI only"
+  },
+  {
+   "name": "Inside Corners",
+   "listPrice": 8.75,
+   "priceNote": null,
+   "pricesByJobType": {
+    "TO-TPO-MF": null,
+    "TO-TPO-FA": 8.75,
+    "TO-EPDM-MF": null,
+    "TO-EPDM-FA": null,
+    "LO-TPO-MF": null,
+    "LO-TPO-FA": null,
+    "LO-EPDM-MF": null,
+    "LO-EPDM-FA": null,
+    "LO-EPDM-BAL": null,
+    "CON-TO-TPO-FA": null,
+    "CON-TO-EPDM-FA": null,
+    "CON-LO-TPO-FA": null,
+    "CON-LO-EPDM-FA": null,
+    "RES-LO-TPO-MF": null,
+    "RES-LO-EPDM-MF": null
+   },
+   "priceTabs": [
+    "CON-LO-EPDM-FA",
+    "CON-LO-TPO-FA",
+    "CON-TO-EPDM-FA",
+    "CON-TO-TPO-FA",
+    "LO-EPDM-BAL",
+    "LO-EPDM-FA",
+    "LO-EPDM-MF",
+    "LO-TPO-FA",
+    "LO-TPO-MF",
+    "RES-LO-EPDM-MF",
+    "RES-LO-TPO-MF",
+    "TO-EPDM-FA",
+    "TO-EPDM-MF",
+    "TO-TPO-FA",
+    "TO-TPO-MF"
+   ],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.01,
+   "pack": "",
+   "note": "Must be 6\""
+  },
+  {
+   "name": "Outside Corners",
+   "listPrice": 8.75,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.01,
+   "pack": "",
+   "note": "OS Corners will typically be for AC Units, Curbs, etc. Must be 6\""
+  },
+  {
+   "name": "Retro Drains",
+   "listPrice": 326.06,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.02,
+   "pack": "",
+   "note": "Be sure to measure the drain pipe diameter to know what to order"
+  },
+  {
+   "name": "Water Block Caulking",
+   "listPrice": 6.68,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.01,
+   "pack": "",
+   "note": "We need about 5,10, or 15 tubes per HVAC system depending on the size of unit, and maybe an additional 1 tube per 10 squres"
+  },
+  {
+   "name": "Regular Caulking",
+   "listPrice": 7.5,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.005,
+   "pack": "",
+   "note": "Sika Sikaflex NP 1 Polyurethane Sealent. We will need about 1 tube per 4 squares"
+  },
+  {
+   "name": "OSI Quad Caulking",
+   "listPrice": 9.8,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.001,
+   "pack": "",
+   "note": "Used to color match metal coping"
+  },
+  {
+   "name": "Coil / Sheet Metal",
+   "listPrice": null,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": null,
+   "pack": "24 gauge steel",
+   "note": ""
+  },
+  {
+   "name": "EPDM Reinforced Membrane",
+   "listPrice": 835.0,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.25,
+   "pack": "Unit is typically as 10' x 100' roll of reinforced membrane, can be purchased in 5'x100' rolls",
+   "note": "Calculated by determining the square footage of all membrane, including parapet walls, curbs, and membrane wrapped over the roof under the flashing."
+  },
+  {
+   "name": "EPDM Cover Tape (sticky one side)",
+   "listPrice": 305.05,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.022,
+   "pack": "Unit is 6\" x 50' roll",
+   "note": "Will be needed when gutters are present, or any flat penetration where parameters walls are not present."
+  },
+  {
+   "name": "Seam Tape",
+   "listPrice": 76.01,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.03,
+   "pack": "Unit is 3\" x 100' roll",
+   "note": "Used to attached membrane rolls together. Calculated as 1:1 of membranes rolls. Each side would required an additional 10ft, but given that there is 15% waste that will makeup the additional"
+  },
+  {
+   "name": "EPDM Primer",
+   "listPrice": 148.29,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": null,
+   "pack": "Comes in a 3 gal pail",
+   "note": "Quantity is based on 10-ft rolls of membrane without factory applied seam tape and \"average\" penetration count."
+  },
+  {
+   "name": "Lap Sealant",
+   "listPrice": null,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": true,
+   "targetPct": 0.005,
+   "pack": "Comes in a caulking tube",
+   "note": "Considers sum of B18 thru B22, divided by 10. And then sum of all AC units multipled by 2."
+  },
+  {
+   "name": "EPDM Non-Reinforced Membrane",
+   "listPrice": 835.0,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.25,
+   "pack": "Unit is typically as 10' x 100' roll of reinforced membrane, can be purchased in 5'x100' rolls",
+   "note": "Calculated by determining the square footage of all membrane, including parapet walls, curbs, and membrane wrapped over the roof under the flashing."
+  },
+  {
+   "name": "Russ Strip Fastener Plates",
+   "listPrice": 241.36,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.02,
+   "pack": "3\" plates, Box of 1,000",
+   "note": "Formula based on 12 screws per 4x8 sheet average. You will need between 4 and 16 plates/screws per 4x8 sheet depending on insulation type and fastening type (MF vs FA)"
+  },
+  {
+   "name": "Fastener Screws (Russ strip)",
+   "listPrice": 385.51,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.04,
+   "pack": "Box of 1,000",
+   "note": "Sum of Seam Plates and ISO Plates. Note screw length for FYI only"
+  },
+  {
+   "name": "Low Rise Foam Adhesive",
+   "listPrice": 610.87,
+   "priceNote": null,
+   "pricesByJobType": {},
+   "priceTabs": [],
+   "priceVaries": false,
+   "priceVariants": null,
+   "blankOnSomeTab": false,
+   "targetPct": 0.04,
+   "pack": "",
+   "note": "Only applicable when adhereing insulation to the concrete deck and/or in between insulation layers. The formula is based on one layer of foam and should be doubled if an additional layer is needed."
+  }
+ ],
+ "rules": {
+  "Restoration": [
+   {
+    "material": "Silicone 44",
+    "order": 22,
+    "expr": "(([Square Footage of Membrane]/100)*1.5)/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "One Flash",
+    "order": 23,
+    "expr": "(([Square Footage of Membrane]/100)*0.2)/2",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Soft Fabric (sq. ft)",
+    "order": 24,
+    "expr": "[Square footage of ponding water]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Firm Fabric (sq. ft)",
+    "order": 25,
+    "expr": "[Square footage of ponding water]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Chip Brushes",
+    "order": 26,
+    "expr": "10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Trash Bags",
+    "order": 27,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 28,
+    "expr": "[Pipe Boots to Replace]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Quickseam Flashing  (priced per patch, not per roll - see note)",
+    "order": 29,
+    "expr": "[Number of breaches]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 30,
+    "expr": "(([EPDM Quickseam Flashing  (priced per patch, not per roll - see note).QtyWithWaste]*10)/12)/250",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Primer",
+    "order": 31,
+    "expr": "(([EPDM Quickseam Flashing  (priced per patch, not per roll - see note).QtyWithWaste]*10)/12)/250",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MS Hybrid",
+    "order": 32,
+    "expr": "([Standard AC Units (5'x3')]*0.3)+([Medium AC Units (7'x5')]*0.5)+([Large AC Units (15'x10')]*1)",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 33,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Roof Vents",
+    "order": 34,
+    "expr": "[Square footage of ponding water]/1000",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 35,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 36,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "TO-TPO-MF": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "([Gutter Line / Flat Termination L/F]/50)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 38,
+    "expr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line / Flat Termination L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 39,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line / Flat Termination L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 43,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 44,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 45,
+    "expr": "[ISO Fastener Plates.QtyNeeded]+[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 46,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 47,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 48,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 49,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 50,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 52,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 53,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 54,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 55,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "TO-TPO-FA": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 38,
+    "expr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 39,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 43,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 44,
+    "expr": "[ISO Fastener Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 45,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 46,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 47,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 48,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 49,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 50,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 51,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 52,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 54,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "TO-EPDM-MF": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 42,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 43,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 44,
+    "expr": "[ISO Fastener Plates.QtyNeeded]+[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 45,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 46,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 47,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 48,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 49,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 50,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 51,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "TO-EPDM-FA": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 42,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 43,
+    "expr": "[ISO Fastener Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 44,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 45,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 46,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 47,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 48,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 49,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 50,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "LO-TPO-MF": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "([Gutter Line / Flat Termination L/F]/50)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 37,
+    "expr": "([Membrane Squares]+[Gutter Line / Flat Termination L/F]+[Required ISO Thickness])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line / Flat Termination L/F])/200",
+    "flags": [
+     "DEFECT: references Membrane Squares and Required ISO Thickness. Every other TPO tab uses Parapet L/F + Penetrations + Gutter L/F. Row offset from a bad copy-paste."
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 38,
+    "expr": "[Insulation Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": "[Membrane Squares]/10",
+    "flags": [
+     "DEFECT: references Insulation Squares. Every other TPO tab uses Membrane Squares."
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 39,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line / Flat Termination L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 43,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 44,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 45,
+    "expr": "[ISO Fastener Plates.QtyNeeded]+[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 46,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 47,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 48,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 49,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 50,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 52,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 53,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 54,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 55,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "LO-TPO-FA": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 38,
+    "expr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 39,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 43,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 44,
+    "expr": "[ISO Fastener Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 45,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 46,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 47,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 48,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 49,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 50,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 51,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 52,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 54,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "LO-EPDM-MF": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 42,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 43,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 44,
+    "expr": "[ISO Fastener Plates.QtyNeeded]+[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 45,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 46,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 47,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 48,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 49,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 50,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 51,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "LO-EPDM-FA": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "ISO Fastener Plates",
+    "order": 42,
+    "expr": "(([Square Footage w/o Parapet Walls]/32)*12)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 43,
+    "expr": "[ISO Fastener Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 44,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 45,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 46,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 47,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 48,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 49,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 50,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "LO-EPDM-BAL": [
+   {
+    "material": "EPDM Non-Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Non-Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Russ Strip Fastener Plates",
+    "order": 42,
+    "expr": "(([Parapet Wall / Metal Cap L/F]/12)/1000)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws (Russ strip)",
+    "order": 43,
+    "expr": "[Russ Strip Fastener Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 44,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 45,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 46,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 47,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 48,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 49,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 50,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "CON-TO-TPO-FA": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 38,
+    "expr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 39,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Low Rise Foam Adhesive",
+    "order": 43,
+    "expr": "[Insulation Squares]/35",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 44,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 45,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 46,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 47,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 48,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 49,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 50,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 51,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "CON-TO-EPDM-FA": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Low Rise Foam Adhesive",
+    "order": 42,
+    "expr": "[Insulation Squares]/35",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 43,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 44,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 45,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 46,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 47,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 48,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 49,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 50,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "CON-LO-TPO-FA": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 38,
+    "expr": "([Parapet Wall / Metal Cap L/F]+[Number of Penetrations]+[Gutter Line L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 39,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 40,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 41,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 42,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Low Rise Foam Adhesive",
+    "order": 43,
+    "expr": "[Insulation Squares]/35",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 44,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 45,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 46,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 47,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 48,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 49,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 50,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 51,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 52,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 53,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "CON-LO-EPDM-FA": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Flat Insulation  (only choose one type of insulation)",
+    "order": 33,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Flat Insulation  (for additional layers)",
+    "order": 34,
+    "expr": "[Insulation Squares]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Tapered Insulation  (only choose one type of insulation)",
+    "order": 35,
+    "expr": "",
+    "manual": true,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 36,
+    "expr": "[Membrane Squares]/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 37,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 38,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 39,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 40,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 41,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Low Rise Foam Adhesive",
+    "order": 42,
+    "expr": "[Insulation Squares]/35",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 43,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 44,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 45,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 46,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 47,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 48,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 49,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 50,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "RES-LO-TPO-MF": [
+   {
+    "material": "TPO Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "([Gutter Line / Flat Termination L/F]/50)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "TPO Detail Flashing (nonsticky)",
+    "order": 31,
+    "expr": "([Standard AC Units (5'x3')]/3)+([Medium AC Units (7'x5')]/1.5)+([Large AC Units (15'x10')]/0.75)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 33,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 34,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.0,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Primer",
+    "order": 35,
+    "expr": "([Membrane Squares]+[Number of Penetrations]+[Gutter Line / Flat Termination L/F])/200",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "TPO Cut Edge Sealant",
+    "order": 36,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 37,
+    "expr": "[Gutter Line / Flat Termination L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 38,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 39,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 40,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 41,
+    "expr": "[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 42,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 43,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 44,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Water Block Caulking",
+    "order": 45,
+    "expr": "([Standard AC Units (5'x3')]*5)+([Medium AC Units (7'x5')]*10)+([Large AC Units (15'x10')]*15)+([Membrane Squares]/10)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Regular Caulking",
+    "order": 46,
+    "expr": "[Membrane Squares]*0.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 47,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 48,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 49,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 50,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 51,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ],
+  "RES-LO-EPDM-MF": [
+   {
+    "material": "EPDM Reinforced Membrane",
+    "order": 29,
+    "expr": "[Membrane Squares]/10",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Cover Tape (sticky one side)",
+    "order": 30,
+    "expr": "[Gutter Line L/F]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Seam Tape",
+    "order": 31,
+    "expr": "[EPDM Reinforced Membrane.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Russ Strip",
+    "order": 32,
+    "expr": "[Parapet Wall / Metal Cap L/F]/100",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 1
+   },
+   {
+    "material": "Bonding Adhesive",
+    "order": 33,
+    "expr": "([Membrane Squares]-[Insulation Squares])/5",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "EPDM Primer",
+    "order": 34,
+    "expr": "([Membrane Squares]/25)*1.25",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Splice Cleaner",
+    "order": 35,
+    "expr": "1",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Drip Edge 3x3 L Metal",
+    "order": 36,
+    "expr": "[Gutter Line L/F]/10",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Pipe Boots",
+    "order": 37,
+    "expr": "[Number of Penetrations]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "SS Clamp Kit",
+    "order": 38,
+    "expr": "[Number of Penetrations]/50",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "MF Seam Plates",
+    "order": 39,
+    "expr": "([Square Footage w/o Parapet Walls]/9)/1000",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Fastener Screws",
+    "order": 40,
+    "expr": "[MF Seam Plates.QtyNeeded]",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Inside Corners",
+    "order": 41,
+    "expr": "[Inside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Outside Corners",
+    "order": 42,
+    "expr": "[Outside Corners]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [
+     "D-01 normalized: empty count reads as zero, not a dash"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Retro Drains",
+    "order": 43,
+    "expr": "[Drains]",
+    "manual": false,
+    "waste": 0.1,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Lap Sealant",
+    "order": 44,
+    "expr": "((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [
+     "Workbook used a row range here. Rewritten as a named sum: ((([Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]))/10)+((([Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]))*2)"
+    ],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "OSI Quad Caulking",
+    "order": 45,
+    "expr": "[Parapet Wall / Metal Cap L/F]/200",
+    "manual": false,
+    "waste": 0.05,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Grommet Screws",
+    "order": 46,
+    "expr": "([Parapet Wall / Metal Cap L/F]*2)/300",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Coil / Sheet Metal",
+    "order": 47,
+    "expr": "",
+    "manual": true,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Primer",
+    "order": 48,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   },
+   {
+    "material": "Metal Paint",
+    "order": 49,
+    "expr": "[Parapet Wall / Metal Cap L/F]/500",
+    "manual": false,
+    "waste": 0.15,
+    "correctedExpr": null,
+    "flags": [],
+    "rounding": "UP",
+    "minQty": 0
+   }
+  ]
+ },
+ "labor": {
+  "Restoration": [
+   {
+    "line": "Labor Estimate",
+    "basis": "per square",
+    "driver": "[Square Footage of Membrane]/100",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "TO-TPO-MF": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "TO-TPO-FA": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "TO-EPDM-MF": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "TO-EPDM-FA": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "LO-TPO-MF": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "LO-TPO-FA": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-MF": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-FA": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-BAL": [
+   {
+    "line": "Ballast Move/Replace",
+    "basis": "per square",
+    "driver": "[Insulation Squares]",
+    "rate": 50.0,
+    "note": ""
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "CON-TO-TPO-FA": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "CON-TO-EPDM-FA": [
+   {
+    "line": "Tear off labor",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 50.0,
+    "note": "Consider thickness of iso, type of roof(s), # of layers of roofing"
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "CON-LO-TPO-FA": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "CON-LO-EPDM-FA": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "RES-LO-TPO-MF": [
+   {
+    "line": "Membrane Removal",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 10.0,
+    "note": ""
+   },
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ],
+  "RES-LO-EPDM-MF": [
+   {
+    "line": "Labor Field Estimate",
+    "basis": "per square",
+    "driver": "[Membrane Squares]",
+    "rate": 30.0,
+    "note": "Membrane Squres X Cost per squ"
+   },
+   {
+    "line": "Labor Detail Estimate",
+    "basis": "per detail",
+    "driver": "[Number of Penetrations]+[Scupper Boxes]+[Inside Corners]+[Outside Corners]+[Drains]+[Standard AC Units (5'x3')]+[Medium AC Units (7'x5')]+[Large AC Units (15'x10')]",
+    "rate": 25.0,
+    "note": "One hour per detail or penetration at $25/hr"
+   },
+   {
+    "line": "Metal Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 1.0,
+    "note": ""
+   },
+   {
+    "line": "Paint Labor",
+    "basis": "per L/F",
+    "driver": "[Parapet Wall / Metal Cap L/F]",
+    "rate": 0.25,
+    "note": ""
+   }
+  ]
+ },
+ "supplementals": {
+  "Restoration": [
+   {
+    "line": "Dump Fees",
+    "default": 50.0,
+    "note": "Will vary based on dump fees at location. Locally we use the Xenia Dump"
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": "Calculation = (# of workers)*(workers hourly rate)*(# of hours traveling)"
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": "Calculation = (Avg. hotel rate ($))*(# of days)"
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": "Crane, aerial lifts, ballast vacuum, etc."
+   }
+  ],
+  "TO-TPO-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": "Will vary based on dump fees at location. Locally we use the Xenia Dump"
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": "Calculation -(# of workers)*(workers hourly rate)*(# of hours traveling)"
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": "Calculation - (Avg. hotel rate ($))*(# of days)"
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": "Crane, aerial lifts, etc."
+   }
+  ],
+  "TO-TPO-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 3600.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 800.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "TO-EPDM-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "TO-EPDM-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "LO-TPO-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "LO-TPO-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "LO-EPDM-BAL": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "CON-TO-TPO-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "CON-TO-EPDM-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "CON-LO-TPO-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "CON-LO-EPDM-FA": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "RES-LO-TPO-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ],
+  "RES-LO-EPDM-MF": [
+   {
+    "line": "Dump Fees",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Travel",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Lodging",
+    "default": 0.0,
+    "note": ""
+   },
+   {
+    "line": "Rental Equipment",
+    "default": 0.0,
+    "note": ""
+   }
+  ]
+ },
+ "margins": [
+  0.25,
+  0.3,
+  0.35,
+  0.4,
+  0.45,
+  0.5,
+  0.55,
+  0.6,
+  0.65,
+  0.7,
+  0.75,
+  0.8
+ ],
+ "selector": {
+  "questions": [
+   {
+    "key": "tearOff",
+    "label": "Is this a tear off job?",
+    "type": "yn"
+   },
+   {
+    "key": "layOver",
+    "label": "Is this a lay over job?",
+    "type": "yn"
+   },
+   {
+    "key": "membrane",
+    "label": "Membrane type",
+    "type": "choice",
+    "options": [
+     "TPO",
+     "EPDM",
+     "Coating"
+    ]
+   },
+   {
+    "key": "attachment",
+    "label": "Installation type",
+    "type": "choice",
+    "options": [
+     "MF",
+     "FA"
+    ]
+   },
+   {
+    "key": "ballastRoof",
+    "label": "Is this a ballast roof?",
+    "type": "yn",
+    "note": "If yes, include the ballast rock removal quote"
+   },
+   {
+    "key": "keepBallast",
+    "label": "Are we keeping the ballast? (lay over)",
+    "type": "yn"
+   },
+   {
+    "key": "concreteDeck",
+    "label": "Is this a concrete deck?",
+    "type": "yn"
+   },
+   {
+    "key": "reskin",
+    "label": "Is the roof system being reskinned?",
+    "type": "yn"
+   }
+  ],
+  "constraints": [
+   {
+    "id": "C-1",
+    "rule": "Tear off and lay over cannot both be selected",
+    "message": "Tear off and lay over are both selected"
+   },
+   {
+    "id": "C-2",
+    "rule": "One of tear off or lay over must be selected",
+    "message": "Select either tear off or lay over"
+   },
+   {
+    "id": "C-3",
+    "rule": "Concrete deck and reskin cannot both be selected",
+    "message": "Concrete deck and reskin are both selected"
+   },
+   {
+    "id": "C-4",
+    "rule": "Concrete deck jobs cannot be ballasted",
+    "message": "A concrete deck job cannot be ballasted"
+   },
+   {
+    "id": "C-5",
+    "rule": "Concrete deck jobs must be fully adhered",
+    "message": "A concrete deck job must be fully adhered"
+   },
+   {
+    "id": "C-6",
+    "rule": "TPO cannot be ballasted",
+    "message": "TPO cannot be ballasted"
+   },
+   {
+    "id": "C-7",
+    "rule": "Concrete deck plus tear off plus EPDM is not an allowed combination",
+    "message": "Concrete deck with tear off and EPDM is not an allowed system"
+   }
+  ]
+ }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roofing estimator, working mockup</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <h1>Roofing estimator</h1>
+  <span class="sub">working mockup, no server, no database</span>
+  <span class="spacer"></span>
+  <span class="stamp" id="counts"></span>
+  <span class="stamp">rules built <span id="buildStamp"></span></span>
+  <span class="stamp" id="jobtypeStamp">no job type</span>
+</header>
+
+<nav class="tabs">
+  <button data-panel="quote" aria-selected="true">Quote</button>
+  <button data-panel="saved">Saved quotes <span class="count" id="savedCount"></span></button>
+  <button data-panel="dash">Dashboard</button>
+  <button data-panel="rules">Rules and prices</button>
+  <button data-panel="about">What this fixes</button>
+</nav>
+
+<div id="flash" style="display:none;position:fixed;right:18px;top:92px;z-index:50;background:#14512f;color:#fff;padding:8px 12px;font-size:13px"></div>
+
+<main>
+
+  <!-- ================= QUOTE ================= -->
+  <section class="panel on" id="panel-quote">
+    <div class="cols">
+      <div class="left-col">
+        <div class="block"><h2>Quote</h2><div class="body" id="qhead"></div></div>
+        <div class="block"><h2>Job criteria<span class="right">7 constraints enforced</span></h2>
+          <div class="body" id="selector"></div></div>
+        <div class="block"><h2>Section 1, job inputs</h2>
+          <div class="body" id="inputs"></div>
+          <div class="body" style="padding-top:0"><div class="note">An empty box counts as zero. Totals are live from the first keystroke.</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="block"><h2>Section 2, material cost table<span class="right">unit price box overrides the price list for this quote only</span></h2>
+          <div class="body tight" id="materials"></div></div>
+        <div class="block"><h2>Sections 3 and 4, labor and supplementals</h2>
+          <div class="body tight" id="labor"></div></div>
+        <div class="cols" style="grid-template-columns:1fr 1fr">
+          <div class="block"><h2>Section 5, totals and margin</h2><div class="body tight" id="totals"></div></div>
+          <div class="block"><h2>Materials ordering list</h2><div class="body tight" id="ordering"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SAVED ================= -->
+  <section class="panel" id="panel-saved">
+    <div class="block"><h2>Saved quotes<span class="right">this browser session only, nothing leaves this machine</span></h2>
+      <div class="searchbar">
+        <button class="btn" id="newQuote">New quote</button>
+        <button class="btn ghost" id="loadDemo">Load demo pipeline</button>
+        <button class="btn ghost" id="clearDemo">Clear demo quotes</button>
+        <button class="btn ghost" id="exportQuotes">Export to file</button>
+        <label class="btn ghost" for="importFile" style="cursor:pointer">Load from file</label>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+      </div>
+      <div class="body tight" id="savedTable"></div>
+    </div>
+    <div class="assume">Every saved quote carries its own snapshot: the unit price, waste percentage and quantity rule that were in force when it was saved. Changing a price later does not move an old quote. That is the behavior the real application has to have, and it is the reason margin history will be worth reading.</div>
+  </section>
+
+  <!-- ================= DASHBOARD ================= -->
+  <section class="panel" id="panel-dash">
+    <div id="dash"></div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section class="panel" id="panel-rules">
+    <div class="block"><h2>Settings</h2><div class="body">
+      <div class="cols" style="grid-template-columns:repeat(4,minmax(180px,1fr))">
+        <div class="field"><label for="taxRate">Sales tax, percent<span class="hint">Assumption: 7 percent, read off the *1.07 in the workbook</span></label><input id="taxRate" type="number" step="0.01"></div>
+        <div class="field"><label for="detailRate">Detail labor, $ per detail<span class="hint">Was buried inside a formula</span></label><input id="detailRate" type="number" step="1"></div>
+        <div class="field"><label for="pricingMode">Pricing</label>
+          <select id="pricingMode" style="text-align:left;font-family:var(--ui)">
+            <option value="list">One price list for every job type</option>
+            <option value="workbook">Workbook per-tab prices, for parity testing</option>
+          </select></div>
+        <div class="field"><label for="ruleMode">Quantity rules</label>
+          <select id="ruleMode" style="text-align:left;font-family:var(--ui)">
+            <option value="workbook">As the workbook has them, defects included</option>
+            <option value="corrected">With the two copy-paste defects corrected</option>
+          </select></div>
+      </div>
+      <div class="assume">Prices are a snapshot from the master copy, not a validated price list. Every one needs vendor confirmation in Phase 0. Editing a price here changes it for every job type at once, which is the point.</div>
+    </div></div>
+
+    <div class="block"><h2>Rule book<span class="right">one rule per material per job type, stored once</span></h2>
+      <div class="searchbar"><select id="ruleJobType" style="min-width:320px"></select></div>
+      <div class="body tight" id="ruleTable"></div>
+    </div>
+
+    <div class="block"><h2>Labor rates</h2><div class="body tight" id="laborTable"></div></div>
+
+    <div class="block"><h2>Rule integrity check</h2><div class="body" id="integrity"></div></div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="panel" id="panel-about">
+    <div class="block"><h2>What the mockup already does differently</h2><div class="body">
+      <table>
+        <thead><tr><th>ID</th><th style="text-align:left">Workbook behavior</th><th style="text-align:left">Here</th></tr></thead>
+        <tbody>
+          <tr><td>D-01</td><td style="text-align:left;font-family:var(--ui)">898 error cells in the blank master, because an empty count writes a text dash</td><td style="text-align:left;font-family:var(--ui)">An empty box is zero. Nothing errors.</td></tr>
+          <tr><td>D-02</td><td style="text-align:left;font-family:var(--ui)">No grand total until every optional count is filled</td><td style="text-align:left;font-family:var(--ui)">Cost, per square and sell price update on every keystroke</td></tr>
+          <tr><td>D-03</td><td style="text-align:left;font-family:var(--ui)">The same rule copied onto 16 tabs, two of them quietly wrong</td><td style="text-align:left;font-family:var(--ui)">Rules are data. The two suspected copy-paste defects are flagged in the rule book with the proposed correction beside them.</td></tr>
+          <tr><td>D-04</td><td style="text-align:left;font-family:var(--ui)">Flat insulation priced at 113.40 on some tabs and 64.89 on others</td><td style="text-align:left;font-family:var(--ui)">One price list. Materials with more than one workbook price are marked.</td></tr>
+          <tr><td>D-05</td><td style="text-align:left;font-family:var(--ui)">Materials with a blank price silently add zero dollars</td><td style="text-align:left;font-family:var(--ui)">Priced at nothing shows a red flag on the line and a count in the totals bar</td></tr>
+          <tr><td>D-06</td><td style="text-align:left;font-family:var(--ui)">Sales tax hardcoded as *1.07 in more than 400 formulas</td><td style="text-align:left;font-family:var(--ui)">One setting</td></tr>
+          <tr><td>D-07</td><td style="text-align:left;font-family:var(--ui)">$25 per detail buried inside a formula</td><td style="text-align:left;font-family:var(--ui)">A labor rate you can see and change</td></tr>
+          <tr><td>D-10</td><td style="text-align:left;font-family:var(--ui)">No record of what was quoted, by whom, or whether it was won</td><td style="text-align:left;font-family:var(--ui)">Saved quotes with a status and a price snapshot</td></tr>
+          <tr><td>D-13</td><td style="text-align:left;font-family:var(--ui)">Twelve margin rows and no record of which one was used</td><td style="text-align:left;font-family:var(--ui)">The margin is stored on the quote and charted</td></tr>
+          <tr><td>D-14</td><td style="text-align:left;font-family:var(--ui)">New find: the supplemental total cell is empty on all 16 job-type tabs, so dump fees, travel, lodging and rental equipment never reach the grand total</td><td style="text-align:left;font-family:var(--ui)">Supplementals are in the cost</td></tr>
+          <tr><td>D-15</td><td style="text-align:left;font-family:var(--ui)">New find: on LO-EPDM-BAL the labor total starts one row below Ballast Move/Replace, and on RES-LO-TPO-MF it starts one row below Membrane Removal, so the first labor line is dropped</td><td style="text-align:left;font-family:var(--ui)">Every labor line counts</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
+    <div class="block"><h2>What it does not do yet, on purpose</h2><div class="body">
+      <div class="note">No database, no accounts, no PDF, no attachments, no audit trail, no MCP. This runs from a folder so the estimators can argue with the rules before anything is built on Azure. Quotes live in the browser tab until exported to a file.</div>
+      <div class="note" style="margin-top:6px">Parity testing is the next gate: load 10 to 15 historical quotes, enter the same takeoff here, and reconcile to the dollar. Use the workbook pricing and workbook rules settings for that run, since history was priced with the defects in place.</div>
+    </div></div>
+  </section>
+
+</main>
+
+<div class="totalsbar" id="bar"></div>
+
+<script src="data/rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

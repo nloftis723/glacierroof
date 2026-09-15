@@ -1,0 +1,12 @@
+{
+  "name": "glacierroof-estimator-mockup",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local mockup of the commercial roofing estimator. Static page, rules as data.",
+  "scripts": {
+    "smoke": "node tools/smoke.js"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}
