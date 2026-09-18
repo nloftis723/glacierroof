@@ -720,13 +720,13 @@ function barChart(data, opts) {
   const bars = data.map((d, i) => {
     const h = (d.v / max) * (H - padT - padB);
     const x = padL + i * bw + bw * 0.16, w = bw * 0.68, y = H - padB - h;
-    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" rx="2" fill="${d.c || "#2c7a4b"}"></rect>
+    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" rx="2" fill="${d.c || "#1c6497"}"></rect>
       <text class="val" x="${(x + w / 2).toFixed(1)}" y="${(y - 4).toFixed(1)}" text-anchor="middle">${esc(opts.fmt ? opts.fmt(d.v) : d.v)}</text>
       <text x="${(x + w / 2).toFixed(1)}" y="${H - padB + 14}" text-anchor="${data.length > 8 ? "end" : "middle"}" ${data.length > 8 ? `transform="rotate(-38 ${(x + w / 2).toFixed(1)} ${H - padB + 14})"` : ""}>${esc(d.k)}</text>`;
   }).join("");
   const ticks = [0, 0.5, 1].map((f) => {
     const y = H - padB - f * (H - padT - padB);
-    return `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="#e3e8e4"></line>
+    return `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="#e9edf1"></line>
       <text x="${padL - 6}" y="${y + 3}" text-anchor="end">${esc(opts.fmt ? opts.fmt(max * f) : Math.round(max * f))}</text>`;
   }).join("");
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.title || "chart")}">${ticks}${bars}</svg>`;
@@ -762,12 +762,12 @@ function renderDashboard() {
   const typeData = Object.keys(byType).sort((a, b) => byType[b].sell - byType[a].sell).slice(0, 10)
     .map((k) => ({ k, v: Math.round(byType[k].sell) }));
   const convData = Object.keys(byType).filter((k) => byType[k].n >= 2).sort()
-    .map((k) => ({ k, v: Math.round((byType[k].won / byType[k].n) * 100), c: "#b98a1e" }));
+    .map((k) => ({ k, v: Math.round((byType[k].won / byType[k].n) * 100), c: "#29abe2" }));
 
   const marginBuckets = {};
   R.margins.forEach((m) => { marginBuckets[pct(m, 0)] = 0; });
   won.forEach((s) => { const k = pct(s.margin, 0); marginBuckets[k] = (marginBuckets[k] || 0) + 1; });
-  const marginData = Object.keys(marginBuckets).map((k) => ({ k, v: marginBuckets[k], c: "#1f5b3a" }));
+  const marginData = Object.keys(marginBuckets).map((k) => ({ k, v: marginBuckets[k], c: "#002642" }));
 
   const noPrice = R.materials.filter((m) => m.listPrice === null || m.listPrice === undefined || m.listPrice === 0);
   const varies = R.materials.filter((m) => m.priceVaries);
